@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_app_bg_gray"
+    tools:context="cn.soft_x.supplies.activity.CommonProblemActivity"
+    >
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/common_problem_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dpi_20"
+        android:background="@color/color_app_white"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_app_white"
+    android:orientation="vertical"
+    tools:context="cn.soft_x.supplies.activity.WoActivity"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+
+            <FrameLayout
+                android:id="@+id/wo_img_fl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dpi_10"
+                android:gravity="center"
+                >
+
+                <ImageView
+                    android:id="@+id/wo_img_bg"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/bg_wo_tx"
+                    />
+
+                <ImageView
+                    android:id="@+id/wo_img_moren"
+                    android:layout_width="@dimen/dpi_85"
+                    android:layout_height="@dimen/dpi_85"
+                    android:layout_gravity="center"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/touxiang"
+                    />
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/wo_touxiang"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:visibility="gone"
+                    fresco:actualImageScaleType="focusCrop"
+                    fresco:backgroundImage="@drawable/bg_wo_tx"
+                    fresco:roundAsCircle="true"
+
+                    />
+            </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/wo_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dpi_10"
+                android:text="123"
+                android:textColor="@color/color_black"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dpi_20"
+                android:divider="@drawable/dividers"
+                android:orientation="horizontal"
+                android:showDividers="middle|end"
+                >
+
+                <TextView
+                    android:id="@+id/wo_quanbudingdan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dpi_5"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/dpi_10"
+                    android:drawableTop="@drawable/quanbudingdan"
+                    android:gravity="center"
+                    android:text="全部订单"
+                    />
+
+                <TextView
+                    android:id="@+id/wo_weiwancheng"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/dpi_10"
+                    android:drawableTop="@drawable/weiwancheng"
+                    android:gravity="center"
+                    android:text="未完成"
+                    />
+
+                <TextView
+                    android:id="@+id/wo_yiwancheng"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/dpi_10"
+                    android:drawableTop="@drawable/yiwancheng"
+                    android:gravity="center"
+                    android:text="已完成"
+                    />
+
+                <TextView
+                    android:id="@+id/wo_tousu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/dpi_10"
+                    android:drawableTop="@drawable/tousu"
+                    android:gravity="center"
+                    android:text="投诉"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_setting_gray"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dpi_15"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/wo_near"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/dpi_10"
+                    android:drawableTop="@drawable/chaijieqiye"
+                    android:gravity="center"
+                    android:text="附近的拆解企业"
+                    />
+
+                <TextView
+                    android:id="@+id/wo_guaqi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/dpi_10"
+                    android:drawableTop="@drawable/guaqi"
+                    android:gravity="center"
+                    android:text="挂起的订单"
+                    />
+
+                <TextView
+                    android:id="@+id/wo_jushou"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/dpi_10"
+                    android:drawableTop="@drawable/jush"
+                    android:gravity="center"
+                    android:text="拒收的订单"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dpi_15"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/wo_fabu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/dpi_10"
+                    android:drawableTop="@drawable/fabu"
+                    android:gravity="center"
+                    android:text="发布"
+                    />
+
+                <TextView
+                    android:id="@+id/wo_yaoqinghan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/dpi_10"
+                    android:drawableTop="@drawable/yaoqinghan"
+                    android:gravity="center"
+                    android:text="邀请函"
+                    />
+
+                <TextView
+                    android:id="@+id/wo_lianxi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/dpi_10"
+                    android:drawableTop="@drawable/kefu"
+                    android:gravity="center"
+                    android:text="联系客服"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dpi_15"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/wo_huoche"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/dpi_10"
+                    android:drawableTop="@drawable/huoche"
+                    android:gravity="center"
+                    android:text="货车"
+                    />
+
+                <TextView
+                    android:id="@+id/wo_zhuce"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/dpi_10"
+                    android:drawableTop="@drawable/zhucexinxi"
+                    android:gravity="center"
+                    android:text="注册信息"
+                    />
+
+                <TextView
+                    android:id="@+id/wo_shezhi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/dpi_10"
+                    android:drawableTop="@drawable/shezhi"
+                    android:gravity="center"
+                    android:text="设置"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dpi_15"
+    >
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/item_near_iv"
+        android:layout_width="@dimen/dpi_70"
+        android:layout_height="@dimen/dpi_70"
+        fresco:backgroundImage="@drawable/home_news_test"
+        />
+
+    <TextView
+        android:textColor="@color/color_black"
+        android:id="@+id/item_near_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/item_near_iv"
+        android:layout_marginLeft="@dimen/dpi_5"
+        android:layout_marginTop="@dimen/dpi_10"
+        android:layout_toRightOf="@id/item_near_iv"
+        android:text="公司名字"
+        />
+
+    <TextView
+        android:id="@+id/item_near_tv_address"
+        android:layout_width="@dimen/dpi_160"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/item_near_iv"
+        android:layout_marginBottom="@dimen/dpi_10"
+        android:layout_marginLeft="@dimen/dpi_5"
+        android:layout_toRightOf="@id/item_near_iv"
+        android:drawableLeft="@drawable/icon_near_marker"
+        android:drawablePadding="@dimen/dpi_10"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:text="公司地址..................."
+        android:textColor="@color/color_black"
+        />
+
+    <Button
+        android:paddingTop="@dimen/dpi_3"
+        android:paddingRight="@dimen/dpi_8"
+        android:paddingLeft="@dimen/dpi_8"
+        android:paddingBottom="@dimen/dpi_3"
+        android:id="@+id/item_near_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dpi_30"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bg_yellow_btn"
+        android:text="查看详情"
+        android:textColor="@color/color_app_white"
+        />
+</RelativeLayout>

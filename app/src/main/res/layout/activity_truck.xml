@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:orientation="vertical"
+    tools:context="cn.soft_x.supplies.activity.TruckActivity"
+    >
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/truck_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <ListView
+            android:id="@+id/truck_listview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+
+        </ListView>
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <Button
+        android:textSize="18sp"
+        android:id="@+id/truck_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dpi_20"
+        android:layout_marginLeft="@dimen/dpi_25"
+        android:layout_marginRight="@dimen/dpi_25"
+        android:layout_marginTop="@dimen/dpi_20"
+        android:background="@drawable/bg_yellow_btn"
+        android:text="生成订单"
+        android:textColor="@color/color_app_white"
+        />
+</LinearLayout>

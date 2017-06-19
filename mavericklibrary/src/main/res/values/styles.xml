@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension"/>
+        <attr name="civ_border_color" format="color"/>
+        <attr name="civ_border_overlay" format="boolean"/>
+        <attr name="civ_fill_color" format="color"/>
+        <attr name="civ_circumference" format="float"/>
+        <attr name="civ_circumference_color" format="color"/>
+    </declare-styleable>
+
+    <style name="hale_circle">
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@drawable/half_circle_bg</item>
+        <item name="android:layout_width">250dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">50dp</item>
+    </style>
+</resources>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_app_white"
+    >
+
+    <LinearLayout
+        android:id="@+id/fragment_msg_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dpi_10"
+        android:layout_marginTop="@dimen/dpi_10"
+        android:orientation="horizontal"
+        >
+
+        <cn.soft_x.supplies.view.MessageView
+            android:id="@+id/dd_msg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_10"
+            android:layout_marginRight="@dimen/dpi_5"
+            android:layout_weight="1"
+            >
+
+        </cn.soft_x.supplies.view.MessageView>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="@dimen/dpi_5"
+            android:layout_marginTop="@dimen/dpi_5"
+            android:background="@color/color_black"
+            />
+
+        <cn.soft_x.supplies.view.MessageView
+            android:id="@+id/cg_msg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_5"
+            android:layout_marginRight="@dimen/dpi_5"
+            android:layout_weight="1"
+            >
+
+        </cn.soft_x.supplies.view.MessageView>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="@dimen/dpi_5"
+            android:layout_marginTop="@dimen/dpi_5"
+            android:background="@color/color_black"
+            />
+
+        <cn.soft_x.supplies.view.MessageView
+            android:id="@+id/system_msg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_5"
+            android:layout_marginRight="@dimen/dpi_10"
+            android:layout_weight="1"
+            >
+
+        </cn.soft_x.supplies.view.MessageView>
+    </LinearLayout>
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:layout_below="@+id/fragment_msg_ll"
+        android:id="@+id/fragment_refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <ListView
+            android:id="@+id/fragment_msg_listView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+        </ListView>
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+</RelativeLayout>

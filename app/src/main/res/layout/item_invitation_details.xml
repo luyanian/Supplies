@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:padding="@dimen/dpi_10"
+    >
+
+    <ImageView
+        android:id="@+id/item_invitation_details_iv"
+        android:layout_width="@dimen/dpi_60"
+        android:layout_height="@dimen/dpi_60"
+        android:layout_marginRight="@dimen/dpi_5"
+        android:background="@drawable/bg_msg_yellow"
+        android:scaleType="centerInside"
+        android:src="@drawable/icon_gonghuoxiaoxi"
+        />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_weight="1"
+        >
+
+        <TextView
+            android:layout_marginTop="@dimen/dpi_5"
+            android:textSize="12sp"
+            android:id="@+id/item_invitation_details_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_5"
+            android:layout_marginRight="@dimen/dpi_5"
+            android:text="您有一条到厂消息，请前往查..........."
+            android:textColor="@color/color_black"
+            />
+
+        <TextView
+            android:textSize="12sp"
+            android:id="@+id/item_invitation_details_chakan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/dpi_5"
+            android:layout_marginRight="@dimen/dpi_5"
+            android:layout_marginTop="@dimen/dpi_5"
+            android:text="查看详情"
+            android:textColor="#4183ff"
+            />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_invitation_details_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginLeft="@dimen/dpi_5"
+        android:text="2016-12"
+        android:textColor="#bdbdbd"
+        android:textSize="12sp"
+        />
+</LinearLayout>

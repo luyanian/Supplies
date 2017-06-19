@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- "_"——表示带有一定透明度 -->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_white">#fff</color>
+    <color name="color_black">#000</color>
+    <color name="color_black_msg">#4c4c4c</color>
+    <color name="color_app_theme_">#eeff7601</color>
+    <color name="color_app_theme">#ff7601</color>
+    <color name="color_app_theme_translucent">#88fab103</color>
+    <color name="color_app_white">#fefefe</color>
+    <color name="color_ed_login">#5c5c5c</color>
+    <color name="color_register_gray">#a4a4a4</color>
+    <color name="color_red">#f00</color>
+    <color name="color_message_view_gray">#4b4b4b</color>
+    <color name="color_app_bg_gray">#e5e5e5</color>
+    <!-- home -->
+    <color name="color_home_blue_1">#67ccee</color>
+    <color name="color_home_blue_2">#4ed1bd</color>
+    <color name="color_home_green_2">#a7dc98</color>
+    <color name="color_home_green_1">#51d14e</color>
+    <color name="color_home_purple">#ab8eed</color>
+    <color name="color_home_orange">#f5b95a</color>
+    <color name="color_home_red">#fe725f</color>
+    <color name="color_home_bottom">#5f5f5f</color>
+    <!-- setting -->
+    <color name="color_setting_gray">#dfdfdf</color>
+    <color name="color_setting_text">#585858</color>
+</resources>

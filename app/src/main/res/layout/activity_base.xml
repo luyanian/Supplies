@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rl_base_root"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_app_theme"
+                android:fitsSystemWindows="true"
+    >
+
+    <LinearLayout
+        android:id="@+id/ll_base_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_app_white"
+        android:orientation="vertical"
+        >
+
+        <include
+            layout="@layout/title_bar_layout"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

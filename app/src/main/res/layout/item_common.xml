@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:divider="@drawable/dividers"
+              android:orientation="vertical"
+              android:showDividers="middle|end"
+    >
+
+    <TextView
+        android:id="@+id/item_common_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/icon_down_arrow"
+        android:padding="@dimen/dpi_10"
+        android:text="常见问题"
+        android:textColor="@color/color_setting_text"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:id="@+id/item_common_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dpi_10"
+        android:paddingLeft="@dimen/dpi_30"
+        android:paddingRight="@dimen/dpi_30"
+        android:paddingTop="@dimen/dpi_10"
+        android:text="131164444165111312131313113131651513131313153131"
+        android:textColor="@color/color_setting_text"
+        android:textSize="16sp"
+        />
+
+
+</LinearLayout>

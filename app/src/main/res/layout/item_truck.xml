@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/color_app_bg_gray"
+              android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dpi_35"
+        android:background="@color/color_app_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/item_truck_check"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="@dimen/dpi_10"
+            android:background="@drawable/bg_truck_1"
+            />
+
+        <TextView
+            android:textColor="@color/color_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_5"
+            android:text="采购单位:"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:textColor="@color/color_black"
+            android:id="@+id/item_truck_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_3"
+            android:text="xxxeee"
+            android:textSize="18sp"
+            />
+    </LinearLayout>
+
+    <com.maverick.view.NoScrollListView
+        android:id="@+id/item_truck_listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dpi_20"
+        android:background="@color/color_app_white"
+        >
+
+    </com.maverick.view.NoScrollListView>
+</LinearLayout>

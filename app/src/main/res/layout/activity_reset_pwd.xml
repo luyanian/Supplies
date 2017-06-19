@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_app_white"
+    tools:context="cn.soft_x.supplies.activity.ResetPwdActivity"
+    >
+
+    <EditText
+        android:id="@+id/reset_pwd_ed_1"
+        style="@style/ed_style_white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dpi_40"
+        android:hint="@string/hint_input_pwd"
+        android:inputType="textPassword"
+        />
+
+    <EditText
+        android:id="@+id/reset_pwd_ed_2"
+        style="@style/ed_style_white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dpi_40"
+        android:layout_below="@id/reset_pwd_ed_1"
+        android:hint="@string/hint_reinput_pwd"
+        android:inputType="textPassword"
+        />
+
+    <Button
+        android:id="@+id/reset_pwd_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dpi_45"
+        android:layout_below="@id/reset_pwd_ed_2"
+        android:layout_marginLeft="@dimen/dpi_45"
+        android:layout_marginRight="@dimen/dpi_45"
+        android:layout_marginTop="@dimen/dpi_20"
+        android:background="@drawable/bg_yellow_btn"
+        android:text="@string/sure"
+        android:textColor="@color/color_white"
+        android:textSize="18sp"
+        />
+</RelativeLayout>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:fresco="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:paddingTop="@dimen/dpi_10"
+              android:paddingLeft="@dimen/dpi_10"
+              android:paddingBottom="@dimen/dpi_10"
+    >
+
+    <TextView
+        android:id="@+id/item_item_check"
+        android:layout_width="@dimen/dpi_15"
+        android:layout_height="@dimen/dpi_15"
+        android:layout_marginRight="@dimen/dpi_10"
+        android:background="@drawable/bg_truck_1"
+        />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/item_item_iv"
+        android:layout_width="@dimen/dpi_70"
+        android:layout_height="@dimen/dpi_70"
+        fresco:backgroundImage="@drawable/home_news_test"
+        />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dpi_80"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/dpi_5"
+        android:paddingTop="@dimen/dpi_10"
+        android:paddingBottom="@dimen/dpi_10"
+        >
+
+        <TextView
+            android:id="@+id/item_item_bianhao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_bianhao"
+            android:textColor="@color/color_black"
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:id="@+id/item_item_bianhao_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_2"
+            android:layout_toRightOf="@id/item_item_bianhao"
+            android:text="cm312131"
+            android:textColor="@color/color_black"
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:id="@+id/item_item_pingzhong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/item_pingzhong"
+            android:textColor="@color/color_black"
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:id="@+id/item_item_pingzhong_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dpi_2"
+            android:layout_toRightOf="@id/item_item_pingzhong"
+            android:text="空调"
+            android:textColor="@color/color_black"
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:id="@+id/item_item_caigoufang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dpi_10"
+            android:layout_toRightOf="@id/item_item_pingzhong_tv"
+            android:text="@string/item_caigoufang"
+            android:textColor="@color/color_black"
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:maxLines="1"
+            android:id="@+id/item_item_caigoufang_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dpi_2"
+            android:layout_toRightOf="@id/item_item_caigoufang"
+            android:text="xxx"
+            android:textColor="@color/color_black"
+            android:textSize="12sp"
+            />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/item_item_btn"
+        android:layout_marginRight="@dimen/dpi_5"
+        android:layout_marginLeft="@dimen/dpi_5"
+        android:paddingTop="@dimen/dpi_3"
+        android:paddingRight="@dimen/dpi_8"
+        android:paddingLeft="@dimen/dpi_8"
+        android:paddingBottom="@dimen/dpi_3"
+        android:layout_width="@dimen/dpi_80"
+        android:layout_height="@dimen/dpi_25"
+        android:background="@drawable/bg_yellow_btn"
+        android:text="查看订单"
+        android:textColor="@color/color_app_white"
+        android:textSize="12sp"
+        />
+</LinearLayout>

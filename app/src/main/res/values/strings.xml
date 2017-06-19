@@ -1,0 +1,64 @@
+<resources>
+    <!-- 登录注册 -->
+    <string name="app_name">城市矿山供货商</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="register_detail">注册详情</string>
+    <string name="sure">确定</string>
+    <string name="forget_pwd">忘记密码?</string>
+    <string name="register_new_user">注册新用户</string>
+    <string name="get_ver">获取验证码</string>
+    <string name="upload_id_card">请上传您的身份证:</string>
+    <string name="warning_info">*照片清晰可辨，信息完整无缺\n*身份照片真实，严禁经过PS处理</string>
+    <string name="goods_kind">供货品种:</string>
+    <string name="tv">电视</string>
+    <string name="Washing_machine">洗衣机</string>
+    <string name="fridge">冰箱</string>
+    <string name="air_conditioner">空调</string>
+    <string name="computer">电脑</string>
+    <string name="select_identity">请选择您的身份</string>
+    <string name="supplier">供货商</string>
+    <string name="transfer">调货商</string>
+    <string name="read">    我已阅读并认可</string>
+    <string name="agreement">《用户使用协议》</string>
+    <!-- hint string  -->
+    <string name="hint_phone">请输入手机号</string>
+    <string name="hint_pwd">请输入密码</string>
+    <string name="hint_input_pwd">请输入6-16位新密码</string>
+    <string name="hint_reinput_pwd">请再次输入密码</string>
+    <string name="hint_ver">请输入验证码</string>
+    <string name="hint_old_pwd">请输入原密码</string>
+
+    <string name="hint_name">请输入您的姓名</string>
+    <string name="hint_your_phone">请输入您的手机号</string>
+    <string name="hint_your_pwd">请输入您的密码</string>
+    <string name="hint_reinput_your_pwd">请再次输入您的密码</string>
+    <string name="hint_address">请输入您的详细地址</string>
+    <string name="hint_emergency">请输入紧急联系人的手机号码</string>
+    <string name="hint_bank_card">请输入您的银行卡号</string>
+    <string name="hint_bank_name">请输入您的银行账户名称</string>
+    <string name="hint_bank">请输入您的开户行详细名称</string>
+    <string name="hint_id_card">请输入您的身份证号</string>
+
+    <string name="hint_search">请输入您要搜索的内容</string>
+
+    <string name="item_bianhao">采购编号:</string>
+    <string name="item_pingzhong">品种:</string>
+    <string name="item_caigoufang">采购方:</string>
+
+    <string name="hello">Hello World, JPush!</string>
+    <string name="tag_hint">Tag为大小写字母，数字，下划线,中文， 多个用以逗号分隔</string>
+    <string name="alias_hint">Alias为大小写字母，数字，下划线</string>
+    <string name="style_hint">style为数字</string>
+    <string name="error_style_empty">style不能为空</string>
+    <string name="error_alias_empty">alias不能为空</string>
+    <string name="error_tag_empty">tag不能为空</string>
+    <string name="error_tag_gs_empty">格式不对</string>
+    <string name="error_network">网络连接异常,初始化失败 请检查网络！</string>
+    <string name="logining">程序在后台执行, 请查看日志！</string>
+    <string name="setting_su">设置成功</string>
+    <string name="common_problem">常见问题</string>
+
+    <string name="about_us">关于我们</string>
+    <string name="change_phone">更换手机号</string>
+</resources>

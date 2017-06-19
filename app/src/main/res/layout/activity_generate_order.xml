@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_app_white"
+    android:orientation="vertical"
+    tools:context="cn.soft_x.supplies.activity.GenerateOrderActivity"
+    >
+
+    <LinearLayout
+        android:id="@+id/order_ll_1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dpi_60"
+        android:layout_marginTop="@dimen/dpi_30"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_20"
+            android:text="选择销售人员:"
+            />
+
+        <Spinner
+            android:id="@+id/order_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_5"
+            android:layout_marginRight="@dimen/dpi_20"
+            >
+
+        </Spinner>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/order_ll_2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dpi_60"
+        android:layout_below="@id/order_ll_1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_20"
+            android:text="预计送达时间:"
+            />
+
+
+    </LinearLayout>
+
+    <DatePicker
+        android:id="@+id/order_dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@+id/order_ll_2"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:spinnersShown="true"
+        >
+
+    </DatePicker>
+
+    <Button
+        android:id="@+id/order_sure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dpi_30"
+        android:layout_marginLeft="@dimen/dpi_25"
+        android:layout_marginRight="@dimen/dpi_25"
+        android:background="@drawable/bg_yellow_btn"
+        android:text="@string/sure"
+        android:textColor="@color/color_app_white"
+        android:textSize="18sp"
+        />
+</RelativeLayout>

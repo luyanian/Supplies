@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_app_bg_gray"
+    tools:context="cn.soft_x.supplies.activity.AboutUsActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dpi_20"
+        android:background="@color/color_app_white"
+        android:divider="@drawable/dividers"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        >
+
+        <RelativeLayout
+            android:id="@+id/about_us_rl_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dpi_15"
+            android:paddingLeft="@dimen/dpi_20"
+            android:paddingRight="@dimen/dpi_20"
+            android:paddingTop="@dimen/dpi_15"
+            >
+
+            <TextView
+                android:id="@+id/rl_1_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="官方网站"
+                android:textColor="@color/color_setting_text"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_1_tv_name"
+                android:layout_marginTop="@dimen/dpi_2"
+                android:text="www.citymine.com.cn"
+                android:textColor="@color/color_setting_text"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_right_arrow"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/about_us_rl_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dpi_15"
+            android:paddingLeft="@dimen/dpi_20"
+            android:paddingRight="@dimen/dpi_20"
+            android:paddingTop="@dimen/dpi_15"
+            >
+
+            <TextView
+                android:id="@+id/rl_2_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="微信"
+                android:textColor="@color/color_setting_text"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_2_tv_name"
+                android:layout_marginTop="@dimen/dpi_2"
+                android:text="微信公众号：拾起卖"
+                android:textColor="@color/color_setting_text"
+                />
+
+            <!--<ImageView-->
+                <!---->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:src="@drawable/icon_right_arrow"-->
+                <!--/>-->
+        </RelativeLayout>
+        <ImageView
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/dpi_20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ewm"
+            />
+
+
+    </LinearLayout>
+</RelativeLayout>
