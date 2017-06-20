@@ -17,6 +17,8 @@ import com.orhanobut.logger.Logger;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import butterknife.BindView;
@@ -25,10 +27,12 @@ import butterknife.OnClick;
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
 import cn.soft_x.supplies.R;
+import cn.soft_x.supplies.activity.nonelectrical.MainActivity2;
 import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
 import cn.soft_x.supplies.model.LoginModel;
+import cn.soft_x.supplies.model.RoleDetailModel;
 import cn.soft_x.supplies.utils.Constant;
 
 /**
@@ -95,18 +99,26 @@ public class LoginActivity extends BaseActivity {
         //        {"loginid":"18522815693","password":"111111","shebei":"0","yhtype":1}
         //        {"loginid":"登录账号","password":"密码","shebei":"设备(0-andriod、1-ios)","yhtype":用户类型（0-调货商、1-供货商）}
         showProgressDialog("正在登陆...");
+        Map<String,String> map = new HashMap<>();
+        map.put("loginid",EditTextUtils.getEdText(loginPhone));
+        map.put("password",EditTextUtils.getEdText(loginPwd));
+        map.put("shebei","0");
+        map.put("yhtype","1");
+        String json = JSON.toJSONString(map);
+        String search = getParamsAESEncode(json);
+        String signature = getParamsRSEEncode(json);
         RequestParams params = new RequestParams(HttpUrl.LOGIN);
-        params.addBodyParameter("loginid", EditTextUtils.getEdText(loginPhone));
-        params.addBodyParameter("password", EditTextUtils.getEdText(loginPwd));
-        params.addBodyParameter("shebei", "0");
-        params.addBodyParameter("yhtype", "1");
-        x.http().post(params, new MyXUtilsCallBack() {
+        params.addBodyParameter("search", search);
+        params.addBodyParameter("signature", signature);
+
+        x.http().get(params, new MyXUtilsCallBack() {
             LoginModel model;
 
             @Override
             public void success(String result) {
                 model = JSON.parseObject(result, LoginModel.class);
                 Constant.USER_ID = model.getYHID();
+                Constant.ROLE_ID = model.getRoleId();
                 LatLng latLng = new LatLng(Float.parseFloat(model.getLatitude()),Float.parseFloat(model.getLongitude()));
                 Constant.LOCATION = latLng;
                 Constant.USER_HEAD_IMG = HttpUrl.API_HOST + model.getYHTX();
@@ -120,17 +132,48 @@ public class LoginActivity extends BaseActivity {
                     Cfg.saveStr(LoginActivity.this, Constant.SH_USER_ID, model.getYHID());
                     Cfg.saveStr(LoginActivity.this, Constant.SH_USER_NAME, EditTextUtils.getEdText(loginPhone));
                     Cfg.saveStr(LoginActivity.this, Constant.SH_PWD, EditTextUtils.getEdText(loginPwd));
+                    Cfg.saveStr(LoginActivity.this,Constant.SH_ROLE_ID,model.getRoleId());
                     Cfg.saveBoolean(LoginActivity.this, Constant.SH_IS_LOGIN, true);
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     JPushInterface.setAlias(SuppliesApplication.getAppContext(), model.getYHID(), new TagAliasCallback() {
                         @Override
                         public void gotResult(int i, String s, Set<String> set) {
                             Logger.i("%d<--->%s", i, s);
                         }
                     });
-                    startActivity(intent);
-                    finish();
+                    getRoleDetail(model.getRoleId());
                 }
+            }
+        });
+    }
+
+    private void getRoleDetail(final String roleId) {
+        RequestParams params = new RequestParams(HttpUrl.ROLEDETAIL);
+        params.addBodyParameter("roleId", roleId);
+        x.http().get(params, new MyXUtilsCallBack() {
+            @Override
+            public void success(String result) {
+                if(isSuccess()) {
+                    RoleDetailModel roleDetailModel = JSON.parseObject(result, RoleDetailModel.class);
+                    Constant.ROLE_YWTAGS = roleDetailModel.getYwtags();
+                    Cfg.saveStr(LoginActivity.this, Constant.SH_ROLE_YWTAGS, roleDetailModel.getYwtags());
+                    Cfg.saveStr(LoginActivity.this, Constant.SH_ROLE_CODE, roleDetailModel.getRoleCode());
+                    Cfg.saveStr(LoginActivity.this, Constant.SH_ROLE_NAME, roleDetailModel.getRoleName());
+                    if("2".equals(roleDetailModel.getYwtags())){
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        Intent intent = new Intent(LoginActivity.this, MainActivity2.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                }
+            }
+
+            @Override
+            public void finished() {
+
             }
         });
     }

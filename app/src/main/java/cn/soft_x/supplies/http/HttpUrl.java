@@ -105,5 +105,8 @@ public class HttpUrl {
     public static final String ROLESLIST = API_HOST+API_PATH_3+"getywjslist";
     //品种列表
     public static final String PINZHONG = API_HOST+API_PATH_2+"getAllpz";
+    //上传图片
     public static final String UPLOADIMG = API_HOST+API_PATH_1+"tupiansc";
+    //获取角色详情
+    public static final String ROLEDETAIL = API_HOST+API_PATH_1+"getroledet";
 }

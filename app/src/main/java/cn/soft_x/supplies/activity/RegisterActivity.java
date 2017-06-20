@@ -144,7 +144,6 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
         initView();
-        roleId = getIntent().getStringExtra("roleId");
         mSearch = GeoCoder.newInstance();
         mSearch.setOnGetGeoCodeResultListener(this);
     }
@@ -156,6 +155,7 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
     }
 
     private void initView() {
+        roleId = getIntent().getStringExtra("roleId");
         registerEdIdCard.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
         if (isTransfer) {
             registerLlCheckbox.setVisibility(View.GONE);
@@ -431,7 +431,7 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
                 File file = new File(path.get(0));
                 uploadFile(file,"qianmingPicPath");
                 Bitmap bitmap = Bimp.getimage(path.get(0));
-                acAuthRightIv.setImageBitmap(bitmap);
+                acAuthSignIv.setImageBitmap(bitmap);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

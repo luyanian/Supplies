@@ -14,6 +14,7 @@ public class LoginModel extends BaseModel{
     private String longitude;
     private String latitude;
     private String YHTX;
+    private String roleId;
 
     public String getYHTX() {
         return YHTX;
@@ -52,5 +53,13 @@ public class LoginModel extends BaseModel{
 
     public String getYHID() {
         return YHID;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getRoleId() {
+        return roleId;
     }
 }

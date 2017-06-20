@@ -33,6 +33,11 @@ public class Constant {
     public static final String SH_PWD = "pwd";
     public static final String SH_USER_NAME = "username";
     public static final String SH_USER_ID = "user_id";
+    public static final String SH_ROLE_ID = "role_id";
+    public static final String SH_ROLE_YWTAGS = "ywtags";
+    public static final String SH_ROLE_NAME = "roleName";
+    public static final String SH_ROLE_CODE = "roleCode";
+
     /**
      * intent value
      */
@@ -46,8 +51,9 @@ public class Constant {
     public static final int TRANSFER = 0X0002;
 
     public static String USER_ID = "";
-
     public static String USER_HEAD_IMG = "";
+    public static String ROLE_ID="";
+    public static String ROLE_YWTAGS="";
     /**
      * WebActivity intent key
      */
