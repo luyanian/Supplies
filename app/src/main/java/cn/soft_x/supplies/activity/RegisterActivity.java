@@ -316,11 +316,13 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
         params.addBodyParameter("search", search);
         params.addBodyParameter("signature", signature);
 
-        x.http().post(params, new MyXUtilsCallBack() {
+        x.http().get(params, new MyXUtilsCallBack() {
             @Override
             public void success(String result) {
-                if (resCode.equals("0")) {
+                if (isSuccess()) {
                     ToastUtil.showToast(RegisterActivity.this, "信息已经提交，请等待审核通过！");
+                }else{
+                    ToastUtil.showToast(RegisterActivity.this, resInfo);
                 }
             }
 
@@ -467,8 +469,14 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
             dismissProgressDialog();
             return;
         }
-        Logger.i("纬度：%f 经度：%f", geoCodeResult.getLocation().latitude, geoCodeResult.getLocation().longitude);
-        doRegister(geoCodeResult.getLocation().latitude, geoCodeResult.getLocation().longitude);
+        double lat = geoCodeResult.getLocation().latitude;
+        double lgt = geoCodeResult.getLocation().longitude;
+        Logger.i("纬度：%f 经度：%f",lat ,lgt );
+        if(lat>180||lat<-180||lgt>180||lgt<-180){
+            Toast.makeText(RegisterActivity.this, "抱歉，无法获取正确地址！请修改后重试！", Toast.LENGTH_LONG).show();
+        }else {
+            doRegister(lat, lgt);
+        }
     }
 
     @Override

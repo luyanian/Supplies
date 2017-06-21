@@ -171,7 +171,24 @@ public class WebFragment2 extends BaseFragment {
                 }
             }
         }
-
+        /**
+         * 得到roleId
+         *
+         * @return
+         */
+        @JavascriptInterface
+        public String getroleId() {
+            if (!TextUtils.isEmpty(Constant.ROLE_ID)) {
+                return Constant.ROLE_ID;
+            } else {
+                if (Cfg.loadStr(mContext, Constant.SH_ROLE_ID).equals("defaults")
+                        || TextUtils.isEmpty(Cfg.loadStr(mContext, Constant.SH_ROLE_ID))) {
+                    return "我没有ROLE_ID,别找我要啦！";
+                } else {
+                    return Cfg.loadStr(mContext, Constant.SH_ROLE_ID);
+                }
+            }
+        }
         /**
          * 打电话
          *
