@@ -14,6 +14,8 @@ import org.json.JSONObject;
 import cn.jpush.android.api.JPushInterface;
 import cn.soft_x.supplies.activity.InvitationActivity;
 import cn.soft_x.supplies.activity.MainActivity;
+import cn.soft_x.supplies.activity.nonelectrical.MainActivity2;
+import cn.soft_x.supplies.utils.Constant;
 
 /**
  * 极光推送Receive
@@ -40,25 +42,27 @@ public class JPushReceiver extends BroadcastReceiver {
 
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
-
-            if (printBundle(bundle).equals("4")) {
-                Intent intent1 = new Intent(context, InvitationActivity.class);
-                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                context.startActivity(intent1);
-                return;
+            if("2".equals(Constant.ROLE_YWTAGS)) {
+                if (printBundle(bundle).equals("4")) {
+                    Intent intent1 = new Intent(context, InvitationActivity.class);
+                    intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    context.startActivity(intent1);
+                    return;
+                }
+                Intent i = new Intent(context, MainActivity.class);
+                i.putExtra("index", 4);
+                i.putExtra("boolean", true);
+                i.putExtra("bundle", bundle);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(i);
+            }else{
+                Intent i = new Intent(context, MainActivity2.class);
+                i.putExtra("index", 3);
+                i.putExtra("boolean", true);
+                i.putExtra("bundle", bundle);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(i);
             }
-            Intent i = new Intent(context, MainActivity.class);
-            i.putExtra("index", 4);
-            i.putExtra("boolean", true);
-            i.putExtra("bundle", bundle);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            context.startActivity(i);
-            //            //打开自定义的Activity
-            //            Intent i = new Intent(context, TestActivity.class);
-            //            i.putExtras(bundle);
-            //            //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
-            //            context.startActivity(i);
 
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 用户收到到RICH PUSH CALLBACK: " + bundle.getString(JPushInterface.EXTRA_EXTRA));

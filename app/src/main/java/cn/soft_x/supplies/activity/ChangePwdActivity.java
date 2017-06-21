@@ -6,11 +6,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.alibaba.fastjson.JSON;
 import com.maverick.utils.EditTextUtils;
 import com.maverick.utils.ToastUtil;
 
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,10 +64,19 @@ public class ChangePwdActivity extends BaseActivity {
                     ToastUtil.showToast(this, "两次输入新密码不一致！");
                     return;
                 }
+
+                Map<String,String> map = new HashMap<>();
+                map.put("ymm", EditTextUtils.getEdText(changePwdEdOld));
+                map.put("xmm", EditTextUtils.getEdText(changePwdPwdEd2));
+                map.put("userid", Constant.USER_ID);
+                String json = JSON.toJSONString(map);
+                String search = getParamsAESEncode(json);
+                String signature = getParamsRSEEncode(json);
+
                 RequestParams params = new RequestParams(HttpUrl.XGMM);
-                params.addBodyParameter("ymm", EditTextUtils.getEdText(changePwdEdOld));
-                params.addBodyParameter("xmm", EditTextUtils.getEdText(changePwdPwdEd2));
-                params.addBodyParameter("userid", Constant.USER_ID);
+                params.addBodyParameter("search", search);
+                params.addBodyParameter("signature", signature);
+
                 x.http().post(params, new MyXUtilsCallBack() {
                     @Override
                     public void success(String result) {

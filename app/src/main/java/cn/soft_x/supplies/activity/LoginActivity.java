@@ -125,6 +125,11 @@ public class LoginActivity extends BaseActivity {
             }
 
             @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+            }
+
+            @Override
             public void finished() {
                 dismissProgressDialog();
                 if (isSuccess()) {

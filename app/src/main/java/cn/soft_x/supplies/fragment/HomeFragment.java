@@ -136,7 +136,6 @@ public class HomeFragment extends BaseFragment {
         }
         //        mContext.showProgressDialog("正在加载数据...");
         RequestParams params = new RequestParams(HttpUrl.HOME);
-        params.addBodyParameter("currentPage","1");
         x.http().get(params, new MyXUtilsCallBack(false) {
             @Override
             public void success(String result) {

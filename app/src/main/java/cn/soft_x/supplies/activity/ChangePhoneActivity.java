@@ -101,7 +101,7 @@ public class ChangePhoneActivity extends BaseActivity {
                         TextUtils.isEmpty(Constant.USER_ID) ?
                                 Cfg.loadStr(this, Constant.SH_USER_ID) : Constant.USER_ID);
                 params.addBodyParameter("yzm", EditTextUtils.getEdText(changePhoneEdVer));
-                x.http().post(params, new MyXUtilsCallBack() {
+                x.http().get(params, new MyXUtilsCallBack() {
                     @Override
                     public void success(String result) {
 

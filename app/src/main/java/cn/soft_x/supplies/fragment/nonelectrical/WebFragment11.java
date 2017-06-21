@@ -38,7 +38,7 @@ public class WebFragment11 extends BaseFragment {
     @BindView(R.id.fragment_web_webView)
     WebView mFragmentWebWebView;
 
-    private String webUrl = HttpUrl.API_HOST + "/s/page/alldingdan.html";
+    private String webUrl = HttpUrl.API_HOST + "/s/page/weiwanchengdd.html";
 
     private String phone = "";
     /**
@@ -126,7 +126,7 @@ public class WebFragment11 extends BaseFragment {
 
         });
         mFragmentWebWebView.setWebChromeClient(new WebChromeClient());
-        mFragmentWebWebView.loadUrl(webUrl+"?roleId="+Constant.ROLE_ID);
+        mFragmentWebWebView.loadUrl(webUrl);
     }
 
     private void callPhone(String phone) {

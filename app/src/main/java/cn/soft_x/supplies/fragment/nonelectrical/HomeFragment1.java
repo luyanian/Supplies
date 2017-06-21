@@ -86,16 +86,14 @@ public class HomeFragment1 extends BaseFragment {
         }
         //        mContext.showProgressDialog("正在加载数据...");
         RequestParams params = new RequestParams(HttpUrl.HOME);
-        params.addBodyParameter("currentPage","1");
         x.http().get(params, new MyXUtilsCallBack(false) {
 
             @Override
             public void success(String result) {
                 model = JSON.parseObject(result, HomeModel.class);
                 imageUrls.clear();
-                for (HomeModel.LbtlistBean l :
-                        model.getLbtlist()) {
-                    imageUrls.add(l.getPICURL());
+                for (HomeModel.LbtlistBean lbtlistBean : model.getLbtlist()) {
+                    imageUrls.add(lbtlistBean.getPICURL());
                 }
 
             }
