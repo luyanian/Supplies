@@ -173,6 +173,24 @@ public class WebFragment21 extends BaseFragment {
             }
         }
         /**
+         * 或得appyhmc
+         *
+         * @return
+         */
+        @JavascriptInterface
+        public String appyhmc() {
+            if (!TextUtils.isEmpty(Constant.SH_USER_NAME)) {
+                return Constant.SH_USER_NAME;
+            } else {
+                if (Cfg.loadStr(mContext, Constant.SH_USER_NAME).equals("defaults")
+                        || TextUtils.isEmpty(Cfg.loadStr(mContext, Constant.SH_USER_NAME))) {
+                    return "我没有USER_ID,别找我要啦！";
+                } else {
+                    return Cfg.loadStr(mContext, Constant.SH_USER_NAME);
+                }
+            }
+        }
+        /**
          * 得到roleId 
          * @return
          */
