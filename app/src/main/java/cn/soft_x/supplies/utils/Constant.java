@@ -51,6 +51,7 @@ public class Constant {
     public static final int TRANSFER = 0X0002;
 
     public static String USER_ID = "";
+    public static String USER_NAME = "";
     public static String USER_HEAD_IMG = "";
     public static String ROLE_ID="";
     public static String ROLE_YWTAGS="";

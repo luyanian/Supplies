@@ -273,8 +273,16 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
             }
 
             @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+            }
+
+            @Override
             public void finished() {
                 dismissProgressDialog();
+                if(!isSuccess()){
+                    Toast.makeText(RegisterActivity.this,resInfo,Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

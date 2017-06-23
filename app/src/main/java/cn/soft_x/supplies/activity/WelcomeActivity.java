@@ -117,6 +117,7 @@ public class WelcomeActivity extends Activity {
             public void success(String result) {
                 model = JSON.parseObject(result, LoginModel.class);
                 Constant.USER_ID = model.getYHID();
+                Constant.USER_NAME = model.getYHNC();
                 Constant.ROLE_ID = model.getRoleId();
                 LatLng latLng = new LatLng(Float.parseFloat(model.getLatitude()), Float.parseFloat(model.getLongitude()));
                 Constant.LOCATION = latLng;

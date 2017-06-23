@@ -198,14 +198,14 @@ public class WebFragment1 extends BaseFragment {
          */
         @JavascriptInterface
         public String appyhmc() {
-            if (!TextUtils.isEmpty(Constant.SH_USER_NAME)) {
-                return Constant.SH_USER_NAME;
+            if (!TextUtils.isEmpty(Constant.USER_NAME)) {
+                return Constant.USER_NAME;
             } else {
-                if (Cfg.loadStr(mContext, Constant.SH_USER_NAME).equals("defaults")
-                        || TextUtils.isEmpty(Cfg.loadStr(mContext, Constant.SH_USER_NAME))) {
+                if (Cfg.loadStr(mContext, Constant.USER_NAME).equals("defaults")
+                        || TextUtils.isEmpty(Cfg.loadStr(mContext, Constant.USER_NAME))) {
                     return "我没有USER_ID,别找我要啦！";
                 } else {
-                    return Cfg.loadStr(mContext, Constant.SH_USER_NAME);
+                    return Cfg.loadStr(mContext, Constant.USER_NAME);
                 }
             }
         }
