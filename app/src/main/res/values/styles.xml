@@ -11,7 +11,8 @@
     <style name="MyAppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
     </style>
 
-    <style name="TranslucentTheme" parent="AppTheme"></style>
+    <style name="TranslucentTheme" parent="AppTheme">
+    </style>
 
     <style name="text_style_white">
         <item name="android:textColor">@color/color_app_white</item>

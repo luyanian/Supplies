@@ -31,12 +31,12 @@ import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.activity.MainActivity;
 import cn.soft_x.supplies.activity.MessageDetailsActivity;
 import cn.soft_x.supplies.activity.nonelectrical.MainActivity2;
-import cn.soft_x.supplies.adapter.MessageAdapter;
+import cn.soft_x.supplies.adapter.nonelectrical.MessageAdapter1;
 import cn.soft_x.supplies.db.MyDBControl;
 import cn.soft_x.supplies.fragment.BaseFragment;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
-import cn.soft_x.supplies.model.MessageModel;
+import cn.soft_x.supplies.model.nonelectrical.MessageModel1;
 import cn.soft_x.supplies.utils.Constant;
 import cn.soft_x.supplies.view.MessageView;
 
@@ -60,8 +60,8 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
     private BGANormalRefreshViewHolder mRefreshHolder;
 
     private MessageView[] messageViews;
-    private List<MessageModel.ListBean> mData = new ArrayList<>();
-    private MessageAdapter mAdapter;
+    private List<MessageModel1.ListBean> mData = new ArrayList<>();
+    private MessageAdapter1 mAdapter;
 
     private boolean isFirst = true;
     private int msgType = 2;
@@ -115,7 +115,7 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
         mRefreshHolder = new BGANormalRefreshViewHolder(getActivity(), true);
         fragmentRefreshLayout.setRefreshViewHolder(mRefreshHolder);
         fragmentRefreshLayout.setDelegate(this);
-        mAdapter = new MessageAdapter(mData);
+        mAdapter = new MessageAdapter1(mData);
         fragmentMsgListView.setAdapter(mAdapter);
         fragmentMsgListView.setOnItemClickListener(this);
     }
@@ -162,11 +162,12 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
             return;
         }
         isConn = true;
-        RequestParams params = new RequestParams(HttpUrl.MSG_1);
+        RequestParams params = new RequestParams(HttpUrl.MSG_GH);
         params.addBodyParameter("xxdl", xxdl + "");
-        params.addBodyParameter("appyhid", Constant.USER_ID);
+//        params.addBodyParameter("appyhid", Constant.USER_ID);
+        params.addBodyParameter("curnum","1");
         if (xxdl == 3) {
-            long time = mControl.searchMsgTime(xxdl);
+            long time = mControl.searchGhsMsgTime(xxdl);
             if (time == -1) {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 Date date;
@@ -181,12 +182,17 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
             }
             Logger.i("外层消息->time"+time);
         }
-        x.http().post(params, new MyXUtilsCallBack(false) {
-            MessageModel messageModel;
+        x.http().get(params, new MyXUtilsCallBack(false) {
+            MessageModel1 MessageModel1;
+
+            @Override
+            public void onSuccess(String result) {
+                super.onSuccess(result);
+            }
 
             @Override
             public void success(String result) {
-                messageModel = JSON.parseObject(result, MessageModel.class);
+                MessageModel1 = JSON.parseObject(result, MessageModel1.class);
 
             }
 
@@ -198,11 +204,11 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
             @Override
             public void finished() {
                 mData.clear();
-                if (null != messageModel) {
-                    mControl.addOrUpDateMsgTable(messageModel);
+                if (null != MessageModel1) {
+                    mControl.addOrUpDateGhsMsgTable(MessageModel1);
                 }
-                //                mData.addAll(messageModel.getList());
-                mData.addAll(mControl.orderMsgByTime(xxdl));
+                //                mData.addAll(MessageModel1.getList());
+                mData.addAll(mControl.orderGhsMsgByTime(xxdl));
                 MainActivity2 activity = (MainActivity2) getActivity();
                 if (activity.fragmentIndex != 3) {
                     isShowToast = false;
@@ -302,14 +308,14 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (mData.get(position).getXXDL() == 3) {
+        if (mData.get(position).getXxdl() == 3) {
             return;
         }
-        Intent intent = new Intent(mContext, MessageDetailsActivity.class);
-        intent.putExtra("xxdl", mData.get(position).getXXDL());
-        intent.putExtra("xxlx", mData.get(position).getXXLX());
-        //        mControl.upDateMsgRead(mData.get(position).getXXDL(), mData.get(position).getXXLX(), 1);
-        startActivity(intent);
+//        Intent intent = new Intent(mContext, MessageDetailsActivity.class);
+//        intent.putExtra("xxdl", mData.get(position).getXxdl());
+//        intent.putExtra("xxlx", mData.get(position).getXxlx());
+//        //        mControl.upDateMsgRead(mData.get(position).getXXDL(), mData.get(position).getXXLX(), 1);
+//        startActivity(intent);
     }
 
     @Override

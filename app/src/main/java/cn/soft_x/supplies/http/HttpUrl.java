@@ -69,6 +69,10 @@ public class HttpUrl {
      */
     public static final String SCDD = API_HOST + API_PATH_2 + "getscdd";
     /**
+     * 供货商消息列表
+     */
+    public static final String MSG_GH = API_HOST + API_PATH_1 + "getxxlist";
+    /**
      * 消息
      */
     public static final String MSG_1 = API_HOST + API_PATH_2 + "xxinfo_yj";
