@@ -6,7 +6,7 @@ android {
         config {
             keyAlias 'soft-x'
             keyPassword 'soft-x123'
-            storeFile file('E:/workspace/Android/Supplies/key/key.jks')
+            storeFile file('E:/source/android/Supplies/key/key.jks')
             storePassword 'soft-x123'
         }
     }
@@ -14,7 +14,7 @@ android {
     buildToolsVersion '26.0.0'
     defaultConfig {
         applicationId "cn.soft_x.supplies"
-        minSdkVersion 16
+        minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"

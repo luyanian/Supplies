@@ -59,11 +59,39 @@ public class MainActivity2 extends BaseActivity implements BottomNavigationBar.O
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(onFragmentBack()){
+            return false;
+        }
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             exit();
             return false;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private boolean onFragmentBack() {
+        if(fragmentIndex==0){
+            if(mHomeFragment1!=null){
+                return mHomeFragment1.onBack();
+            }
+        }
+        if(fragmentIndex==1){
+            if(mWebFragment11!=null) {
+                return mWebFragment11.onBack();
+            }
+        }
+        if(fragmentIndex==2){
+            if(mWebFragment21!=null){
+                return mWebFragment21.onBack();
+            }
+        }
+        if(fragmentIndex==3) {
+            if (mMsgFragment1 != null) {
+                return mMsgFragment1.onBack();
+            }
+        }
+
+            return false;
     }
 
     private void exit() {

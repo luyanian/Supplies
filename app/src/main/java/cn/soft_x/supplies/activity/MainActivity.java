@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.application.SuppliesApplication;
+import cn.soft_x.supplies.fragment.BaseFragment;
 import cn.soft_x.supplies.fragment.HomeFragment;
 import cn.soft_x.supplies.fragment.MessageFragment;
 import cn.soft_x.supplies.fragment.WebFragment1;
@@ -49,11 +50,38 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(onFragmentBack()){
+            return false;
+        }
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             exit();
             return false;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private boolean onFragmentBack() {
+        if(fragmentIndex==0){
+            if(mHomeFragment!=null){
+                return mHomeFragment.onBack();
+            }
+        }
+        if(fragmentIndex==2){
+            if(mWebFragment1!=null) {
+                return mWebFragment1.onBack();
+            }
+        }
+        if(fragmentIndex==3){
+            if(mWebFragment2!=null){
+                return mWebFragment2.onBack();
+            }
+        }
+        if(fragmentIndex==4){
+            if(mMsgFragment!=null){
+                return mMsgFragment.onBack();
+            }
+        }
+        return false;
     }
 
     private void exit() {

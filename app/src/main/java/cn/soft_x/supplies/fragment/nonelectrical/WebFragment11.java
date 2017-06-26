@@ -129,6 +129,15 @@ public class WebFragment11 extends BaseFragment {
         mFragmentWebWebView.loadUrl(webUrl);
     }
 
+    @Override
+    public boolean onBack() {
+        if(mFragmentWebWebView.canGoBack()){
+            mFragmentWebWebView.goBack();
+            return true;
+        }
+        return false;
+    }
+
     private void callPhone(String phone) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_CALL);

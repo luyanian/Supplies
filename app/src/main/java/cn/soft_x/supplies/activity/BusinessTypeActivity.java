@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.facebook.imagepipeline.producers.Consumer;
@@ -64,13 +65,19 @@ public class BusinessTypeActivity extends BaseActivity implements AdapterView.On
         x.http().get(params, new MyXUtilsCallBack() {
             @Override
             public void success(String result) {
+
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                super.onSuccess(result);
                 RoleModel bean = JSON.parseObject(result, RoleModel.class);
                 Logger.json(result);
-                ToastUtil.showToast(BusinessTypeActivity.this,resInfo);
                 if(isSuccess()) {
                     initDate(bean.getData());
+                }else{
+                    Toast.makeText(BusinessTypeActivity.this,bean.resultInfo,Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override

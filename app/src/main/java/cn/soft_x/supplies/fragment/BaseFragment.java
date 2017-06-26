@@ -62,4 +62,6 @@ public abstract class BaseFragment extends Fragment {
 
     abstract protected void initData();
 
+    abstract public boolean onBack();
+
 }

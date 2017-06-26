@@ -182,6 +182,11 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
+    public boolean onBack() {
+        return false;
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
     }

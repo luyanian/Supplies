@@ -156,7 +156,7 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
 
     private void initView() {
         roleId = getIntent().getStringExtra("roleId");
-        registerEdIdCard.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+        registerEdIdCard.setKeyListener(DigitsKeyListener.getInstance("0123456789xX"));
         if (isTransfer) {
             registerLlCheckbox.setVisibility(View.GONE);
         }

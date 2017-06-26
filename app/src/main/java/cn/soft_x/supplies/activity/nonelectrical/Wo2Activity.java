@@ -155,9 +155,8 @@ public class Wo2Activity extends BaseActivity {
         x.http().post(params, new MyXUtilsCallBack() {
             @Override
             public void success(String result) {
-
+                Logger.d(result);
             }
-
             @Override
             public void finished() {
                 if (isSuccess()) {

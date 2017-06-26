@@ -90,6 +90,11 @@ public class MessageFragment extends BaseFragment implements BGARefreshLayout.BG
         initReadDot();
     }
 
+    @Override
+    public boolean onBack() {
+        return false;
+    }
+
     @OnClick({R.id.dd_msg, R.id.cg_msg, R.id.system_msg})
     public void onClick(View view) {
         switch (view.getId()) {
