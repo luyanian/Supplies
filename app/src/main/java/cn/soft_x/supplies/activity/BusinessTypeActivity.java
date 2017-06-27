@@ -20,6 +20,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.adapter.RolesListAdapter;
 import cn.soft_x.supplies.http.HttpUrl;
@@ -103,6 +104,9 @@ public class BusinessTypeActivity extends BaseActivity implements AdapterView.On
             finish();
         }
     }
-
+    @OnClick({R.id.title_bar_left})
+    public void onClick(View view) {
+      finish();
+    }
 
 }
