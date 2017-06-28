@@ -436,12 +436,13 @@ public class MyDBControl {
     }
 
     public synchronized long searchGhsMsgTime(int xxdl,int xxlx) {
-        Cursor cursor = mDb.rawQuery("select * from "
+        String sql = "select * from "
                 + MySQLiteOpenHelper.MSG_GHS_TABLE_NAME + " where "
                 + MySQLiteOpenHelper.USER_ID + "=? and "
-                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGDL + "=? "
+                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGDL + "=? and "
                 + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGLX + "=? order by "
-                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_TIME + " desc limit 0,1", new String[]{Constant.USER_ID, xxdl + "",xxlx+""});
+                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_TIME + " desc limit 0,1";
+        Cursor cursor = mDb.rawQuery(sql, new String[]{Constant.USER_ID, xxdl + "",xxlx+""});
         if (cursor.getCount() == 0) {
             return -1;
         } else {
@@ -550,7 +551,7 @@ public class MyDBControl {
                 contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSGDL, b.getXxdl());
                 contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSGLX, b.getXxlx());
                 contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSG_TIME, b.getTime());
-                mDb.insert(MySQLiteOpenHelper.MSG_TABLE_NAME, null, contentValues);
+                long ret = mDb.insert(MySQLiteOpenHelper.MSG_GHS_TABLE_NAME, null, contentValues);
                 contentValues.clear();
             } else {
                 boolean isNotHave = searchGhsMsg(b.getXxdl(), b.getXxlx());
@@ -568,17 +569,18 @@ public class MyDBControl {
                     contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSGDL, b.getXxdl());
                     contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSGLX, b.getXxlx());
                     contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSG_TIME, b.getTime());
-                    mDb.insert(MySQLiteOpenHelper.MSG_TABLE_NAME, null, contentValues);
+                    long ret = mDb.insert(MySQLiteOpenHelper.MSG_GHS_TABLE_NAME, null, contentValues);
                     contentValues.clear();
                 } else {
                     // 如果有就做更新
                     boolean read = searchGhsMsgRead(b.getXxdl(), b.getXxlx());
                     Logger.i("addOrUpDateMsgTable 更新  read->" + read);
                     upDateGhsMsgTime(b.getXxdl(), b.getXxlx(), b.getTime());
-                    if (read)
-                        upDateGhsMsgRead(b.getXxdl(), b.getXxlx(), 1);
-                    else
-                        upDateGhsMsgRead(b.getXxdl(), b.getXxlx(), 0);
+//                    if (read) {
+//                        upDateGhsMsgRead(b.getXxdl(), b.getXxlx(), 0);
+//                    }else {
+//                        upDateGhsMsgRead(b.getXxdl(), b.getXxlx(), 1);
+//                    }
                 }
             }
         }

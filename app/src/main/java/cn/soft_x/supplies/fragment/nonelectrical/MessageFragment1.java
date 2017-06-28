@@ -212,7 +212,7 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
                 if (null != MessageModel1) {
                     mControl.addOrUpDateGhsMsgTable(MessageModel1);
                 }
-                //                mData.addAll(MessageModel1.getList());
+                //mData.addAll(MessageModel1.getList());
                 mData.addAll(mControl.orderGhsMsgByTime(xxdl));
                 MainActivity2 activity = (MainActivity2) getActivity();
                 if (activity.fragmentIndex != 3) {
@@ -316,6 +316,9 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
         if (mData.get(position).getXxdl() == 3) {
             return;
         }
+        MessageModel1.ListBean model1 =  mData.get(position);
+        mControl.upDateGhsMsgRead(model1.getXxdl(),model1.getXxlx(),1);
+        getMsgData(msgType);
 //        Intent intent = new Intent(mContext, MessageDetailsActivity.class);
 //        intent.putExtra("xxdl", mData.get(position).getXxdl());
 //        intent.putExtra("xxlx", mData.get(position).getXxlx());
