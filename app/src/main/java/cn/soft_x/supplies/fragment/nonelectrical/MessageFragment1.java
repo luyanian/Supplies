@@ -36,6 +36,7 @@ import cn.soft_x.supplies.db.MyDBControl;
 import cn.soft_x.supplies.fragment.BaseFragment;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
+import cn.soft_x.supplies.model.nonelectrical.HQMsgModel;
 import cn.soft_x.supplies.model.nonelectrical.MessageModel1;
 import cn.soft_x.supplies.utils.Constant;
 import cn.soft_x.supplies.view.MessageView;
@@ -156,6 +157,10 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
     private boolean isConn = false;
 
     private void getMsgData(final int xxdl) {
+        if(xxdl==1){
+            getHQMsgData(xxdl);
+            return;
+        }
         if (!isHidden()) {
             mContext.showProgressDialog("正在加载...");
         }
@@ -223,6 +228,24 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
                 isConn = false;
                 mContext.dismissProgressDialog();
                 mAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    private void getHQMsgData(int xxdl) {
+        RequestParams params = new RequestParams(HttpUrl.HQMSGLIST);
+        params.addBodyParameter("hqpm","");
+        params.addBodyParameter("hqszd","");
+        params.addBodyParameter("currentPage","1");
+        x.http().get(params, new MyXUtilsCallBack() {
+            @Override
+            public void success(String result) {
+                HQMsgModel hqMsgModel = JSON.parseObject(result, HQMsgModel.class);
+            }
+
+            @Override
+            public void finished() {
+
             }
         });
     }

@@ -114,4 +114,6 @@ public class HttpUrl {
     public static final String UPLOADIMG = API_HOST+API_PATH_1+"tupiansc";
     //获取角色详情
     public static final String ROLEDETAIL = API_HOST+API_PATH_1+"getroledet";
+    //行情消息列表
+    public static final String HQMSGLIST = API_HOST+API_PATH_3+"quotationlist";
 }

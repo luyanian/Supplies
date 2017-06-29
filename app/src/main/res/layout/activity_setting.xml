@@ -5,32 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_app_white"
-    tools:context="cn.soft_x.supplies.activity.SettingActivity"
-    >
+    tools:context="cn.soft_x.supplies.activity.SettingActivity">
 
     <LinearLayout
         android:id="@+id/setting_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dpi_40"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo"
-            />
+            android:src="@drawable/logo"/>
 
         <TextView
             android:id="@+id/setting_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dpi_60"
             android:layout_marginTop="@dimen/dpi_10"
-            android:text="版本号:2.2.2"
-            />
+            android:text="版本号:2.2.2"/>
     </LinearLayout>
 
     <LinearLayout
@@ -41,8 +37,7 @@
         android:divider="@drawable/dividers"
         android:dividerPadding="@dimen/dpi_10"
         android:orientation="vertical"
-        android:showDividers="middle|end"
-        >
+        android:showDividers="middle|end" >
 
         <TextView
             android:id="@+id/change_phone"
@@ -84,7 +79,7 @@
         android:layout_below="@id/setting_ll_1"
         android:layout_marginLeft="@dimen/dpi_40"
         android:layout_marginRight="@dimen/dpi_40"
-        android:layout_marginTop="@dimen/dpi_60"
+        android:layout_marginTop="@dimen/dpi_30"
         android:background="@drawable/bg_yellow_btn"
         android:text="退出登录"
         android:textColor="@color/color_app_white"
