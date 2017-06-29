@@ -26,6 +26,7 @@ import cn.soft_x.supplies.activity.InvitationActivity;
 import cn.soft_x.supplies.activity.NearCompanyActivity;
 import cn.soft_x.supplies.activity.SettingActivity;
 import cn.soft_x.supplies.activity.TruckActivity;
+import cn.soft_x.supplies.activity.WebViewActivity;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.utils.Constant;
 
@@ -162,6 +163,15 @@ public class WebFragment2 extends BaseFragment {
     }
 
     public class JsInterFace {
+        /**
+         * 关闭界面
+         */
+        @JavascriptInterface
+        public void doFinish() {
+            if(mFragmentWebWebView.canGoBack()){
+                mFragmentWebWebView.goBack();
+            }
+        }
         /**
          * 得到userId
          *

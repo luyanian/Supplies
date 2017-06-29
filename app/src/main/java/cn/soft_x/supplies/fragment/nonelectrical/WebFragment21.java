@@ -163,6 +163,16 @@ public class WebFragment21 extends BaseFragment {
     }
 
     public class JsInterFace {
+
+        /**
+         * 关闭界面
+         */
+        @JavascriptInterface
+        public void doFinish() {
+            if(mFragmentWebWebView.canGoBack()){
+                mFragmentWebWebView.goBack();
+            }
+        }
         /**
          * 得到userId
          *

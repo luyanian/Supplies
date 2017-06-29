@@ -16,7 +16,7 @@ public class HttpUrl {
     /**
      * 辉哥
      */
-    //    public static final String API_HOST = "http://192.168.0.58:84";
+//    public static final String API_HOST = "http://192.168.0.58:84";
     /**
      * 毕萌萌
      */

@@ -217,8 +217,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dpi_15"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/wo_huoche"
@@ -228,8 +227,7 @@
                     android:drawablePadding="@dimen/dpi_10"
                     android:drawableTop="@drawable/huoche"
                     android:gravity="center"
-                    android:text="货车"
-                    />
+                    android:text="货车" />
 
                 <TextView
                     android:id="@+id/wo_zhuce"
@@ -239,8 +237,7 @@
                     android:drawablePadding="@dimen/dpi_10"
                     android:drawableTop="@drawable/zhucexinxi"
                     android:gravity="center"
-                    android:text="注册信息"
-                    />
+                    android:text="注册信息"/>
 
                 <TextView
                     android:id="@+id/wo_shezhi"
