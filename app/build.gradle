@@ -6,7 +6,7 @@ android {
         config {
             keyAlias 'soft-x'
             keyPassword 'soft-x123'
-            storeFile file('E:/source/android/Supplies/key/key.jks')
+            storeFile file('E:/workspace/Android/Supplies/key/key.jks')
             storePassword 'soft-x123'
         }
     }

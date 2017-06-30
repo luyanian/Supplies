@@ -19,6 +19,7 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -131,13 +132,20 @@ public class WelcomeActivity extends Activity {
                     Cfg.saveStr(WelcomeActivity.this, Constant.SH_USER_ID, model.getYHID());
                     Cfg.saveStr(WelcomeActivity.this,Constant.SH_ROLE_ID,model.getRoleId());
                     Cfg.saveBoolean(WelcomeActivity.this, Constant.SH_IS_LOGIN, true);
-                    JPushInterface.setAlias(SuppliesApplication.getAppContext(), model.getYHID(), new TagAliasCallback() {
+                    getRoleDetail(model.getRoleId());
+
+                    Set<String> set = new HashSet<String>();
+                    String[] tags = model.getTags().split("-");
+                    for (String tag : tags){
+                        set.add(tag);
+                    }
+                    JPushInterface.setAliasAndTags(SuppliesApplication.getAppContext(), model.getYHID(), set, new TagAliasCallback() {
                         @Override
                         public void gotResult(int i, String s, Set<String> set) {
                             Logger.i("%d<--->%s", i, s);
                         }
                     });
-                    getRoleDetail(model.getRoleId());
+
                 } else {
                     Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                     Cfg.saveBoolean(WelcomeActivity.this, Constant.SH_IS_LOGIN, false);

@@ -65,7 +65,7 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
     private MessageAdapter1 mAdapter;
 
     private boolean isFirst = true;
-    private int msgType = 2;
+    private int msgType = 1;
     MyDBControl mControl;
 
     @Override
@@ -138,13 +138,13 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
         switch (index) {
             case 0:
                 // 2016-12-05 订单消息
-                getMsgData(2);
+                getMsgData(1);
                 msgType = 2;
                 break;
             case 1:
                 // 2016-12-05 采购消息
-                getMsgData(1);
-                msgType = 1;
+                getMsgData(2);
+                msgType = 2;
                 break;
             case 2:
                 getMsgData(3);
@@ -157,10 +157,6 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
     private boolean isConn = false;
 
     private void getMsgData(final int xxdl) {
-        if(xxdl==1){
-            getHQMsgData(xxdl);
-            return;
-        }
         if (!isHidden()) {
             mContext.showProgressDialog("正在加载...");
         }

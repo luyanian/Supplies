@@ -216,8 +216,10 @@ public class HomeFragment1 extends BaseFragment {
         Intent intent = null;
         switch (view.getId()) {
             case R.id.ll_dingdan:
-                MainActivity2 activity1 = (MainActivity2) getActivity();
-                activity1.mainBottomBar.selectTab(1);
+                String webUrl = HttpUrl.API_HOST + "/s/page/weiwanchengdd.html";
+                Intent intent1 = new Intent(getActivity(),WebViewActivity.class);
+                intent1.putExtra(Constant.WEB_URL, webUrl);
+                startActivity(intent1);
                 break;
             case R.id.view_hangqing:
                 MainActivity2 activity2 = (MainActivity2) getActivity();

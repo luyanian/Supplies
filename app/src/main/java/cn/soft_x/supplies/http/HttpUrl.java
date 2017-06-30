@@ -102,6 +102,7 @@ public class HttpUrl {
     public static final String YQH_2 = API_HOST + API_PATH_1 + "showyqhejlb";
 
     public static final String UPLOAD_HEAD_IMG = API_HOST + API_PATH_1 + "uptx";
+    public static final String EDIT_HEAD_IMG = API_HOST + API_PATH_1 + "xgtx";
 
     public static final String DELETE_HUOCHE = API_HOST + API_PATH_1 + "delhc";
 

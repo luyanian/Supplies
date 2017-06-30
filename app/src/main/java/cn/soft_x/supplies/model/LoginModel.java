@@ -15,6 +15,7 @@ public class LoginModel extends BaseModel{
     private String latitude;
     private String YHTX;
     private String roleId;
+    private String tags;
 
     public String getYHTX() {
         return YHTX;
@@ -61,5 +62,13 @@ public class LoginModel extends BaseModel{
 
     public String getRoleId() {
         return roleId;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tag) {
+        this.tags = tag;
     }
 }

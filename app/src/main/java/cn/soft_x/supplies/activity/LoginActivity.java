@@ -18,6 +18,7 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -105,7 +106,7 @@ public class LoginActivity extends BaseActivity {
         map.put("shebei","0");
         map.put("yhtype","1");
         String json = JSON.toJSONString(map);
-        String search = getParamsAESEncode(json);
+        final String search = getParamsAESEncode(json);
         String signature = getParamsRSEEncode(json);
         RequestParams params = new RequestParams(HttpUrl.LOGIN);
         params.addBodyParameter("search", search);
@@ -140,13 +141,21 @@ public class LoginActivity extends BaseActivity {
                     Cfg.saveStr(LoginActivity.this, Constant.SH_PWD, EditTextUtils.getEdText(loginPwd));
                     Cfg.saveStr(LoginActivity.this,Constant.SH_ROLE_ID,model.getRoleId());
                     Cfg.saveBoolean(LoginActivity.this, Constant.SH_IS_LOGIN, true);
-                    JPushInterface.setAlias(SuppliesApplication.getAppContext(), model.getYHID(), new TagAliasCallback() {
+
+                    getRoleDetail(model.getRoleId());
+
+                    Set<String> set = new HashSet<String>();
+                    String[] tags = model.getTags().split("-");
+                    for (String tag : tags){
+                        set.add(tag);
+                    }
+                    JPushInterface.setAliasAndTags(SuppliesApplication.getAppContext(), model.getYHID(), set, new TagAliasCallback() {
                         @Override
                         public void gotResult(int i, String s, Set<String> set) {
                             Logger.i("%d<--->%s", i, s);
                         }
                     });
-                    getRoleDetail(model.getRoleId());
+
                 }
             }
         });

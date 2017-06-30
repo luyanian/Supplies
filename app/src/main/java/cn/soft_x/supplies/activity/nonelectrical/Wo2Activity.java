@@ -17,12 +17,16 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.maverick.utils.Cfg;
 import com.maverick.utils.ToastUtil;
 import com.orhanobut.logger.Logger;
 
+import org.xutils.common.util.KeyValue;
 import org.xutils.http.RequestParams;
+import org.xutils.http.body.MultipartBody;
 import org.xutils.x;
 
 import java.io.File;
@@ -149,19 +153,29 @@ public class Wo2Activity extends BaseActivity {
     }
 
     private void upLoadImg() {
-        RequestParams params = new RequestParams(HttpUrl.UPLOAD_HEAD_IMG);
-        params.addBodyParameter("appyhid", Constant.USER_ID);
-        params.addBodyParameter("file", IMG_FILE);
+        RequestParams params = new RequestParams(HttpUrl.EDIT_HEAD_IMG);
+        List<KeyValue> list = new ArrayList<>();
+        list.add(new KeyValue("image",IMG_FILE));
+        MultipartBody body = new MultipartBody(list,"utf-8");
+        params.setRequestBody(body);
         x.http().post(params, new MyXUtilsCallBack() {
             @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+            }
+
+            @Override
             public void success(String result) {
+                if (isSuccess()) {
+                    JSONObject jsonObject = JSON.parseObject(result);
+                    Constant.USER_HEAD_IMG = HttpUrl.API_HOST+jsonObject.getString("path");
+//                    ToastUtil.showToast(Wo2Activity.this, "头像上传成功!请重新登录!");
+                }
                 Logger.d(result);
             }
             @Override
             public void finished() {
-                if (isSuccess()) {
-                    ToastUtil.showToast(Wo2Activity.this, "头像上传成功!请重新登录!");
-                }
+
             }
         });
     }
