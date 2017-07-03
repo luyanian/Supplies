@@ -1,6 +1,7 @@
 package cn.soft_x.supplies.fragment.nonelectrical;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -10,6 +11,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -19,6 +22,12 @@ import android.webkit.WebViewClient;
 import com.maverick.utils.Cfg;
 import com.maverick.utils.ToastUtil;
 import com.orhanobut.logger.Logger;
+
+import org.xutils.http.cookie.DbCookieStore;
+import org.xutils.x;
+
+import java.net.HttpCookie;
+import java.util.List;
 
 import butterknife.BindView;
 import cn.soft_x.supplies.R;
@@ -126,6 +135,8 @@ public class WebFragment11 extends BaseFragment {
 
         });
         mFragmentWebWebView.setWebChromeClient(new WebChromeClient());
+
+        synCookies(getActivity(),webUrl);
         mFragmentWebWebView.loadUrl(webUrl);
     }
 
@@ -161,6 +172,33 @@ public class WebFragment11 extends BaseFragment {
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    /**
+     * 同步一下cookie
+     */
+    public static void synCookies(Context context, String url) {
+        DbCookieStore instance = DbCookieStore.INSTANCE;
+        List cookies = instance.getCookies();
+        String cookieValue="";
+        for (int i = 0; i < cookies.size(); i++) {
+            HttpCookie httpCookie = (HttpCookie) cookies.get(i);
+            if ((httpCookie.toString()).contains("JSESSIONID")) {
+                StringBuilder sbCookie = new StringBuilder();
+                sbCookie.append(String.format("SHAREJSESSIONID=%s", httpCookie.getValue()));
+                sbCookie.append(String.format(";domain=%s", httpCookie.getDomain()));
+                sbCookie.append(String.format(";path=%s", httpCookie.getPath()));
+                cookieValue = sbCookie.toString();
+                break;
+            }
+        }
+
+        CookieSyncManager.createInstance(context);
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+        cookieManager.removeSessionCookie();//移除
+        cookieManager.setCookie(url, cookieValue);//cookies是在HttpClient中获得的cookie
+        CookieSyncManager.getInstance().sync();
     }
 
     public class JsInterFace {
