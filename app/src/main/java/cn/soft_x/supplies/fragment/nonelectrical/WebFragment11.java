@@ -134,7 +134,9 @@ public class WebFragment11 extends BaseFragment {
 
 
         });
-        mFragmentWebWebView.setWebChromeClient(new WebChromeClient());
+        mFragmentWebWebView.setWebChromeClient(new WebChromeClient(){
+
+        });
 
         synCookies(getActivity(),webUrl);
         mFragmentWebWebView.loadUrl(webUrl);
@@ -185,19 +187,18 @@ public class WebFragment11 extends BaseFragment {
             HttpCookie httpCookie = (HttpCookie) cookies.get(i);
             if ((httpCookie.toString()).contains("JSESSIONID")) {
                 StringBuilder sbCookie = new StringBuilder();
-                sbCookie.append(String.format("SHAREJSESSIONID=%s", httpCookie.getValue()));
+                sbCookie.append(String.format("JSESSIONID=%s", httpCookie.getValue()));
                 sbCookie.append(String.format(";domain=%s", httpCookie.getDomain()));
                 sbCookie.append(String.format(";path=%s", httpCookie.getPath()));
                 cookieValue = sbCookie.toString();
                 break;
             }
         }
-
-        CookieSyncManager.createInstance(context);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            CookieSyncManager.createInstance(context);
+        }
         CookieManager cookieManager = CookieManager.getInstance();
-        cookieManager.setAcceptCookie(true);
-        cookieManager.removeSessionCookie();//移除
-        cookieManager.setCookie(url, cookieValue);//cookies是在HttpClient中获得的cookie
+        cookieManager.setCookie(url, cookieValue);//如果没有特殊需求，这里只需要将session id以"key=value"形式作为cookie即可
         CookieSyncManager.getInstance().sync();
     }
 
