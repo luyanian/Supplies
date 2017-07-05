@@ -101,7 +101,6 @@ public class BusinessTypeActivity extends BaseActivity implements AdapterView.On
             Intent intent = new Intent(this, RegisterActivity.class);
             intent.putExtra("roleId", dataBean.getRoleId());
             startActivity(intent);
-            finish();
         }
     }
     @OnClick({R.id.title_bar_left})

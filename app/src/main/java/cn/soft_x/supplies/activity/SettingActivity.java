@@ -13,6 +13,7 @@ import com.maverick.utils.Cfg;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.utils.Constant;
 
@@ -93,6 +94,7 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void doLogout() {
+        JPushInterface.onPause(getApplicationContext());
         Intent intent = new Intent(this, LoginActivity.class);
         Cfg.saveBoolean(this, Constant.SH_IS_LOGIN, false);
         startActivity(intent);
