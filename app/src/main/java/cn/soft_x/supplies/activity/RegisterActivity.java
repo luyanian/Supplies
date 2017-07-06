@@ -263,7 +263,6 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
             ToastUtil.showToast(this, "手机号格式不对！");
             return;
         }
-        countDownTimer.start();
         showProgressDialog("正在获取验证码...");
         RequestParams params = new RequestParams(HttpUrl.GET_YZM);
         params.addBodyParameter("dhhm", EditTextUtils.getEdText(registerEdPhone));
@@ -283,6 +282,8 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
                 dismissProgressDialog();
                 if(!isSuccess()){
                     Toast.makeText(RegisterActivity.this,resInfo,Toast.LENGTH_SHORT).show();
+                }else{
+                    countDownTimer.start();
                 }
             }
         });

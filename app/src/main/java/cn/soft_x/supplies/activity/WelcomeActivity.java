@@ -139,6 +139,8 @@ public class WelcomeActivity extends Activity {
                     for (String tag : tags){
                         set.add(tag);
                     }
+                    JPushInterface.init(getApplicationContext());
+                    JPushInterface.resumePush(getApplicationContext());
                     JPushInterface.setAliasAndTags(SuppliesApplication.getAppContext(), model.getYHID(), set, new TagAliasCallback() {
                         @Override
                         public void gotResult(int i, String s, Set<String> set) {

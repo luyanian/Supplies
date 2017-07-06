@@ -54,8 +54,6 @@ import me.nereo.multi_image_selector.MultiImageSelectorActivity;
  */
 
 public class Wo2Activity extends BaseActivity {
-
-
     @BindView(R.id.wo_img_bg)
     ImageView woImgBg;
     @BindView(R.id.wo_img_moren)

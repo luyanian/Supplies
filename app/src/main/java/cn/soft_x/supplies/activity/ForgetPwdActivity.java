@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.maverick.utils.EditTextUtils;
 import com.maverick.utils.ToastUtil;
@@ -111,6 +112,11 @@ public class ForgetPwdActivity extends BaseActivity {
         x.http().post(params, new MyXUtilsCallBack() {
             @Override
             public void success(String result) {
+                if(isSuccess()){
+                    countDownTimer.start();
+                }else{
+                    Toast.makeText(ForgetPwdActivity.this,result,Toast.LENGTH_SHORT).show();
+                }
                 try {
                     JSONObject object = new JSONObject(result);
                     yzm = object.getInt("yzm")+"";
