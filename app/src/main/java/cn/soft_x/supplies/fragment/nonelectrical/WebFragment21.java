@@ -228,6 +228,15 @@ public class WebFragment21 extends BaseFragment {
             }
         }
         /**
+         * 判断登录状态
+         *
+         * @return
+         */
+        @JavascriptInterface
+        public int judge() {
+            return 1;
+        }
+        /**
          * 或得appyhmc
          *
          * @return

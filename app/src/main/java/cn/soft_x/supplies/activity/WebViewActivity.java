@@ -299,6 +299,15 @@ public class WebViewActivity extends BaseActivity {
             }
         }
         /**
+         * 判断登录状态
+         *
+         * @return
+         */
+        @JavascriptInterface
+        public int judge() {
+            return 2;
+        }
+        /**
          * 打电话
          *
          * @param phone

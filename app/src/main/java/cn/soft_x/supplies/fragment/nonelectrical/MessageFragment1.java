@@ -81,13 +81,13 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
         ddMsg.setMsgTv("订单消息");
         cgMsg.setMsgTv("行情消息");
         systemMsg.setMsgTv("系统消息");
-        clickMsgView(0);
+        initData();
     }
 
     @Override
     protected void initData() {
         if (!isFirst) {
-            getMsgData(msgType);
+            clickMsgView(0);
         }
         isFirst = false;
         initReadDot();
@@ -139,7 +139,7 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
             case 0:
                 // 2016-12-05 订单消息
                 getMsgData(1);
-                msgType = 2;
+                msgType = 1;
                 break;
             case 1:
                 // 2016-12-05 采购消息

@@ -222,6 +222,7 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
                 }
                 break;
             case R.id.register_tv_agreement:
+                Constant.ROLE_ID = roleId;
                 Intent intent = new Intent(this, WebViewActivity.class);
                 intent.putExtra(Constant.WEB_URL, HttpUrl.API_HOST + "/s/page/zhucetk.html");
                 startActivity(intent);
