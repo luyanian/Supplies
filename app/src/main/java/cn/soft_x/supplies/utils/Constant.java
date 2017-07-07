@@ -55,6 +55,8 @@ public class Constant {
     public static String USER_HEAD_IMG = "";
     public static String ROLE_ID="";
     public static String ROLE_YWTAGS="";
+    public static String HDDDCOUNT ="";
+
     /**
      * WebActivity intent key
      */

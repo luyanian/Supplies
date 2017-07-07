@@ -38,10 +38,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.activity.BaseActivity;
-import cn.soft_x.supplies.activity.InvitationActivity;
-import cn.soft_x.supplies.activity.NearCompanyActivity;
 import cn.soft_x.supplies.activity.SettingActivity;
-import cn.soft_x.supplies.activity.TruckActivity;
 import cn.soft_x.supplies.activity.WebViewActivity;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
@@ -64,6 +61,8 @@ public class Wo2Activity extends BaseActivity {
     FrameLayout woImgFl;
     @BindView(R.id.tv_user_name)
     TextView tvUserName;
+    @BindView(R.id.hdddcount)
+    TextView hdddcount;
 
     private ArrayList<String> imgPath = new ArrayList<>();
 
@@ -94,6 +93,14 @@ public class Wo2Activity extends BaseActivity {
             woTouxiang.setImageURI(Uri.parse(Constant.USER_HEAD_IMG));
         }
         tvUserName.setText(Cfg.loadStr(this, Constant.SH_USER_NC));
+        String count = TextUtils.isEmpty(Constant.HDDDCOUNT)?Cfg.loadStr(Wo2Activity.this,Constant.HDDDCOUNT):Constant.HDDDCOUNT;
+        if(TextUtils.isEmpty(count)||"0".equals(count)) {
+            hdddcount.setVisibility(View.GONE);
+        }else{
+            hdddcount.setVisibility(View.VISIBLE);
+            hdddcount.setText(count);
+        }
+
     }
 
     private void initIntent() {
@@ -153,8 +160,8 @@ public class Wo2Activity extends BaseActivity {
     private void upLoadImg() {
         RequestParams params = new RequestParams(HttpUrl.EDIT_HEAD_IMG);
         List<KeyValue> list = new ArrayList<>();
-        list.add(new KeyValue("image",IMG_FILE));
-        MultipartBody body = new MultipartBody(list,"utf-8");
+        list.add(new KeyValue("image", IMG_FILE));
+        MultipartBody body = new MultipartBody(list, "utf-8");
         params.setRequestBody(body);
         x.http().post(params, new MyXUtilsCallBack() {
             @Override
@@ -166,11 +173,12 @@ public class Wo2Activity extends BaseActivity {
             public void success(String result) {
                 if (isSuccess()) {
                     JSONObject jsonObject = JSON.parseObject(result);
-                    Constant.USER_HEAD_IMG = HttpUrl.API_HOST+jsonObject.getString("path");
+                    Constant.USER_HEAD_IMG = HttpUrl.API_HOST + jsonObject.getString("path");
 //                    ToastUtil.showToast(Wo2Activity.this, "头像上传成功!请重新登录!");
                 }
                 Logger.d(result);
             }
+
             @Override
             public void finished() {
 
@@ -219,7 +227,7 @@ public class Wo2Activity extends BaseActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    @OnClick({R.id.wo_img_fl,R.id.title_bar_left,R.id.order_daishenhe, R.id.order_jiaoyizhong, R.id.order_yijiesuan, R.id.more_kefu, R.id.more_zhucexinxi, R.id.more_shezhi})
+    @OnClick({R.id.wo_img_fl, R.id.title_bar_left, R.id.order_daishenhe, R.id.order_jiaoyizhong, R.id.order_yijiesuan, R.id.more_kefu, R.id.more_zhucexinxi, R.id.more_shezhi})
     public void onViewClicked(View view) {
         Intent intent = null;
         switch (view.getId()) {
@@ -231,19 +239,19 @@ public class Wo2Activity extends BaseActivity {
                 break;
             case R.id.order_daishenhe:
                 intent = new Intent(this, WebViewActivity.class);
-                intent.putExtra(Constant.WEB_URL, HttpUrl.API_HOST + "/s/page/daishenhedd.html?roleId="+Constant.ROLE_ID);
+                intent.putExtra(Constant.WEB_URL, HttpUrl.API_HOST + "/s/page/daishenhedd.html?roleId=" + Constant.ROLE_ID);
 //                intent.putExtra(Constant.WEB_DDLX, "");
                 startActivity(intent);
                 break;
             case R.id.order_jiaoyizhong:
                 intent = new Intent(this, WebViewActivity.class);
-                intent.putExtra(Constant.WEB_URL, HttpUrl.API_HOST + "/s/page/weiwanchengdd.html?roleId="+Constant.ROLE_ID);
+                intent.putExtra(Constant.WEB_URL, HttpUrl.API_HOST + "/s/page/weiwanchengdd.html?roleId=" + Constant.ROLE_ID);
 //                intent.putExtra(Constant.WEB_DDLX, "2");
                 startActivity(intent);
                 break;
             case R.id.order_yijiesuan:
                 intent = new Intent(this, WebViewActivity.class);
-                intent.putExtra(Constant.WEB_URL, HttpUrl.API_HOST + "/s/page/yiwanchengdd.html?roleId="+Constant.ROLE_ID);
+                intent.putExtra(Constant.WEB_URL, HttpUrl.API_HOST + "/s/page/yiwanchengdd.html?roleId=" + Constant.ROLE_ID);
 //                intent.putExtra(Constant.WEB_DDLX, "5");
                 startActivity(intent);
                 break;

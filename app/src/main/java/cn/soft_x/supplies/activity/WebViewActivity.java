@@ -119,6 +119,15 @@ public class WebViewActivity extends BaseActivity {
         synCookies(this,webUrl);
         webView.loadUrl(webUrl);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String url = webView.getUrl();
+        synCookies(this,url);
+        webView.reload();
+    }
+
     /**
      * 同步一下cookie
      */
@@ -162,7 +171,8 @@ public class WebViewActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (webView.canGoBack()) {
+        String url = webView.getUrl();
+        if (webView.canGoBack()&&!webUrl.equals(url)) {
             webView.goBack();
         } else {
             super.onBackPressed();
@@ -507,6 +517,12 @@ public class WebViewActivity extends BaseActivity {
         @JavascriptInterface
         public String showBackButton(){
             return "show";
+        }
+
+        @JavascriptInterface
+        public void tologin(){
+            Intent intent = new Intent(WebViewActivity.this,LoginActivity.class);
+            startActivity(intent);
         }
     }
 

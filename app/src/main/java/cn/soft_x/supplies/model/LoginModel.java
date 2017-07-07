@@ -11,6 +11,7 @@ public class LoginModel extends BaseModel{
 
     private String YHID;
     private String YHNC;
+    private String hdddcount;
     private String longitude;
     private String latitude;
     private String YHTX;
@@ -23,6 +24,14 @@ public class LoginModel extends BaseModel{
 
     public void setYHTX(String YHTX) {
         this.YHTX = YHTX;
+    }
+
+    public String getHdddcount() {
+        return hdddcount;
+    }
+
+    public void setHdddcount(String hdddcount) {
+        this.hdddcount = hdddcount;
     }
 
     public String getLongitude() {

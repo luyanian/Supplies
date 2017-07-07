@@ -31,9 +31,11 @@ import java.util.List;
 import butterknife.BindView;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.activity.InvitationActivity;
+import cn.soft_x.supplies.activity.LoginActivity;
 import cn.soft_x.supplies.activity.NearCompanyActivity;
 import cn.soft_x.supplies.activity.SettingActivity;
 import cn.soft_x.supplies.activity.TruckActivity;
+import cn.soft_x.supplies.activity.WebViewActivity;
 import cn.soft_x.supplies.fragment.BaseFragment;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.utils.Constant;
@@ -138,6 +140,18 @@ public class WebFragment21 extends BaseFragment {
         mFragmentWebWebView.setWebChromeClient(new WebChromeClient());
         synCookies(getActivity(),webUrl);
         mFragmentWebWebView.loadUrl(webUrl);
+    }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //相当于Fragment的onResume
+            String url = mFragmentWebWebView.getUrl();
+            synCookies(getActivity(),url);
+            mFragmentWebWebView.reload();
+        } else {
+            //相当于Fragment的onPause
+        }
     }
     /**
      * 同步一下cookie
@@ -446,6 +460,12 @@ public class WebFragment21 extends BaseFragment {
         @JavascriptInterface
         public String showBackButton(){
             return "hide";
+        }
+
+        @JavascriptInterface
+        public void tologin(){
+            Intent intent = new Intent(getActivity(),LoginActivity.class);
+            startActivity(intent);
         }
     }
 

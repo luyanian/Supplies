@@ -75,7 +75,7 @@ public class ResetPwdActivity extends BaseActivity {
         //        {"dhhm":"18522815693","yhtype":"1","password":"12368975","yzm":"2447"}
         RequestParams params = new RequestParams(HttpUrl.WJMM);
         params.addBodyParameter("dhhm", phone);
-        params.addBodyParameter("yhtype", 0 + "");
+        params.addBodyParameter("yhtype", 1 + "");
         params.addBodyParameter("password", EditTextUtils.getEdText(resetPwdEd2));
         params.addBodyParameter("yzm", ver);
         showProgressDialog("请稍候...");

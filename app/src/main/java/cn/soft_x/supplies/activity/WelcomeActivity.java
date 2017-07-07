@@ -119,6 +119,7 @@ public class WelcomeActivity extends Activity {
                 model = JSON.parseObject(result, LoginModel.class);
                 Constant.USER_ID = model.getYHID();
                 Constant.USER_NAME = model.getYHNC();
+                Constant.HDDDCOUNT = model.getHdddcount();
                 Constant.ROLE_ID = model.getRoleId();
                 LatLng latLng = new LatLng(Float.parseFloat(model.getLatitude()), Float.parseFloat(model.getLongitude()));
                 Constant.LOCATION = latLng;
@@ -130,6 +131,7 @@ public class WelcomeActivity extends Activity {
                 if (isSuccess()) {
                     Cfg.saveStr(WelcomeActivity.this, Constant.SH_USER_NC, model.getYHNC());
                     Cfg.saveStr(WelcomeActivity.this, Constant.SH_USER_ID, model.getYHID());
+                    Cfg.saveStr(WelcomeActivity.this, Constant.HDDDCOUNT, model.getHdddcount());
                     Cfg.saveStr(WelcomeActivity.this,Constant.SH_ROLE_ID,model.getRoleId());
                     Cfg.saveBoolean(WelcomeActivity.this, Constant.SH_IS_LOGIN, true);
                     getRoleDetail(model.getRoleId());
