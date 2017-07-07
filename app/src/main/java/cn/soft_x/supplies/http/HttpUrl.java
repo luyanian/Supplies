@@ -24,8 +24,9 @@ public class HttpUrl {
     /**
      * 外网
      */
-    public static final String API_HOST = "http://123.207.150.153:80";
+//    public static final String API_HOST = "http://123.207.150.153:80";
 //    public static final String API_HOST = "http://115.28.237.251:80";
+    public static final String API_HOST = "http://192.168.0.122:81";
     /**
      *
      */
