@@ -28,6 +28,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.activity.InvitationActivity;
+import cn.soft_x.supplies.activity.LoginActivity;
 import cn.soft_x.supplies.activity.MainActivity;
 import cn.soft_x.supplies.activity.NearCompanyActivity;
 import cn.soft_x.supplies.activity.TruckActivity;
@@ -87,6 +88,12 @@ public class HomeFragment1 extends BaseFragment {
         //        mContext.showProgressDialog("正在加载数据...");
         RequestParams params = new RequestParams(HttpUrl.HOME);
         x.http().get(params, new MyXUtilsCallBack(false) {
+
+            @Override
+            public void onSessionTimeOut() {
+                super.onSessionTimeOut();
+                toLogin();
+            }
 
             @Override
             public void success(String result) {
@@ -237,5 +244,10 @@ public class HomeFragment1 extends BaseFragment {
             default:
                 break;
         }
+    }
+
+    public void toLogin(){
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
     }
 }

@@ -40,6 +40,10 @@ public abstract class MyXUtilsCallBack implements Callback.CommonCallback<String
             JSONObject object = new JSONObject(result);
             resCode = object.getString("resultCode");
             resInfo = object.getString("resultInfo");
+            if(result.contains("未登录")){
+                onSessionTimeOut();
+                return;
+            }
             if (isSuccess()) {
                 success(result);
             }
@@ -75,5 +79,7 @@ public abstract class MyXUtilsCallBack implements Callback.CommonCallback<String
     public abstract void success(String result);
 
     public abstract void finished();
+
+    public void onSessionTimeOut(){};
 
 }
