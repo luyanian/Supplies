@@ -10,11 +10,16 @@ import android.widget.TextView;
 
 import com.maverick.utils.Cfg;
 
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.jpush.android.api.JPushInterface;
 import cn.soft_x.supplies.R;
+import cn.soft_x.supplies.http.HttpUrl;
+import cn.soft_x.supplies.http.MyXUtilsCallBack;
 import cn.soft_x.supplies.utils.Constant;
 
 public class SettingActivity extends BaseActivity {
@@ -94,10 +99,21 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void doLogout() {
-        JPushInterface.onPause(getApplicationContext());
-        Intent intent = new Intent(this, LoginActivity.class);
-        Cfg.saveBoolean(this, Constant.SH_IS_LOGIN, false);
-        startActivity(intent);
-        finish();
+        RequestParams params = new RequestParams(HttpUrl.LOGOUT);
+        x.http().get(params, new MyXUtilsCallBack() {
+            @Override
+            public void success(String result) {
+                JPushInterface.onPause(getApplicationContext());
+                Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
+                Cfg.clearAllData(SettingActivity.this);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void finished() {
+
+            }
+        });
     }
 }

@@ -18,7 +18,12 @@ public class Cfg {
 		mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 	} 
 	
-	
+	public static void clearAllData(Context context){
+		if(mSharedPreferences ==null){
+			mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+		}
+		mSharedPreferences.edit().clear().commit();
+	}
 	
 	/**
 	 * 存储String类型的数据

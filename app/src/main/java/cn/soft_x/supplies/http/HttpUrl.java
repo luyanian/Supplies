@@ -118,4 +118,6 @@ public class HttpUrl {
     public static final String ROLEDETAIL = API_HOST+API_PATH_1+"getroledet";
     //行情消息列表
     public static final String HQMSGLIST = API_HOST+API_PATH_3+"quotationlist";
+    //退出登录
+    public static final String LOGOUT = API_HOST+API_PATH_1+"loginout";
 }
