@@ -30,6 +30,7 @@ import cn.jpush.android.api.JPushInterface;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.activity.MainActivity;
 import cn.soft_x.supplies.activity.MessageDetailsActivity;
+import cn.soft_x.supplies.activity.WebViewActivity;
 import cn.soft_x.supplies.activity.nonelectrical.MainActivity2;
 import cn.soft_x.supplies.adapter.nonelectrical.MessageAdapter1;
 import cn.soft_x.supplies.db.MyDBControl;
@@ -87,7 +88,7 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
     @Override
     protected void initData() {
         if (!isFirst) {
-            clickMsgView(0);
+            clickMsgView(msgType-1);
         }
         isFirst = false;
         initReadDot();
@@ -337,12 +338,26 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
         }
         MessageModel1.ListBean model1 =  mData.get(position);
         mControl.upDateGhsMsgRead(model1.getXxdl(),model1.getXxlx(),1);
-        getMsgData(msgType);
-//        Intent intent = new Intent(mContext, MessageDetailsActivity.class);
-//        intent.putExtra("xxdl", mData.get(position).getXxdl());
-//        intent.putExtra("xxlx", mData.get(position).getXxlx());
-//        //        mControl.upDateMsgRead(mData.get(position).getXXDL(), mData.get(position).getXXLX(), 1);
-//        startActivity(intent);
+
+        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+        /**
+         * 1：订单消息，2：行情消息，3：系统消息
+         */
+        switch (model1.getXxdl()) {
+            case 1:
+                intent.putExtra(Constant.WEB_URL, HttpUrl.API_HOST + "/s/page/dd-xq.html");
+                break;
+            case 2:
+                intent.putExtra(Constant.WEB_URL, HttpUrl.API_HOST + "/s/page/hangqing-xq.html");
+                break;
+        }
+        Logger.i("click to String ->" + model1.toString());
+        Logger.i("MessageDetail->onClick!!!");
+        Logger.i("MessageDetail->xxdl->%d,xxlx->%d", model1.getXxdl(), model1.getXxlx());
+        intent.putExtra(Constant.WEB_HUNHEID, model1.getGlcompanyid());
+        intent.putExtra(Constant.WEB_CGID, model1.getGlid());
+        intent.putExtra(Constant.WEB_GLID, model1.getGlid());
+        startActivity(intent);
     }
 
     @Override

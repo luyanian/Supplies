@@ -88,13 +88,6 @@ public class HomeFragment1 extends BaseFragment {
         //        mContext.showProgressDialog("正在加载数据...");
         RequestParams params = new RequestParams(HttpUrl.HOME);
         x.http().get(params, new MyXUtilsCallBack(false) {
-
-            @Override
-            public void onSessionTimeOut() {
-                super.onSessionTimeOut();
-                toLogin();
-            }
-
             @Override
             public void success(String result) {
                 model = JSON.parseObject(result, HomeModel.class);
@@ -244,10 +237,5 @@ public class HomeFragment1 extends BaseFragment {
             default:
                 break;
         }
-    }
-
-    public void toLogin(){
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        startActivity(intent);
     }
 }

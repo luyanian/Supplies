@@ -1,6 +1,7 @@
 package cn.soft_x.supplies.http;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.maverick.utils.ToastUtil;
 import com.orhanobut.logger.Logger;
@@ -9,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 
+import cn.soft_x.supplies.activity.LoginActivity;
 import cn.soft_x.supplies.application.SuppliesApplication;
 
 /**
@@ -80,6 +82,9 @@ public abstract class MyXUtilsCallBack implements Callback.CommonCallback<String
 
     public abstract void finished();
 
-    public void onSessionTimeOut(){};
+    public void onSessionTimeOut(){
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+    };
 
 }
