@@ -21,6 +21,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.maverick.utils.Cfg;
 import com.maverick.utils.ToastUtil;
@@ -85,6 +86,13 @@ public class WebViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        new Thread().setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread thread, Throwable throwable) {
+                Toast.makeText(WebViewActivity.this,throwable.toString(),Toast.LENGTH_LONG).show();
+                throwable.printStackTrace();
+            }
+        });
         setContentView(R.layout.activity_web_view);
         ButterKnife.bind(this);
         initIntent();
