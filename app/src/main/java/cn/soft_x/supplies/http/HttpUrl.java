@@ -27,6 +27,7 @@ public class HttpUrl {
     public static final String API_HOST = "http://123.207.150.153";
 //    public static final String API_HOST = "http://115.28.237.251:80";
 //    public static final String API_HOST = "http://192.168.0.122:81";
+//    public static final String API_HOST = "http://192.168.0.58:84";
     /**
      *
      */

@@ -83,8 +83,13 @@ public abstract class MyXUtilsCallBack implements Callback.CommonCallback<String
     public abstract void finished();
 
     public void onSessionTimeOut(){
-        Intent intent = new Intent(context, LoginActivity.class);
-        context.startActivity(intent);
+        try {
+            Intent intent = new Intent(context, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     };
 
 }
