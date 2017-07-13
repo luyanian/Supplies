@@ -107,7 +107,7 @@ public class ForgetPwdActivity extends BaseActivity {
     private void getVerCode() {
         countDownTimer.start();
         showProgressDialog("正在获取验证码...");
-        RequestParams params = new RequestParams(HttpUrl.GET_YZM);
+        RequestParams params = new RequestParams(HttpUrl.GET_WJMM_YZM);
         params.addBodyParameter("dhhm", EditTextUtils.getEdText(forgetPwdEdPhone));
         x.http().post(params, new MyXUtilsCallBack() {
             @Override

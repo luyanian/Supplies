@@ -55,8 +55,9 @@
         android:text="会员名"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="2dp"
         android:orientation="horizontal">
         <RelativeLayout
             android:id="@+id/order_daishenhe"
@@ -65,7 +66,7 @@
             android:layout_weight="1">
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="65dp"
                 android:drawablePadding="10dp"
                 android:layout_centerInParent="true"
                 android:drawableTop="@drawable/quanbudingdan"
@@ -81,7 +82,7 @@
             <TextView
                 android:id="@+id/tv_jiaoyizhong"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="65dp"
                 android:drawablePadding="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_centerInParent="true"
@@ -101,7 +102,7 @@
                 android:gravity="center"
                 android:visibility="visible"
                 android:textColor="@color/color_red"
-                android:text="2"/>
+                android:text="0"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/order_yijiesuan"
@@ -110,7 +111,7 @@
             android:layout_weight="1">
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="65dp"
                 android:layout_weight="1"
                 android:drawablePadding="10dp"
                 android:layout_centerInParent="true"

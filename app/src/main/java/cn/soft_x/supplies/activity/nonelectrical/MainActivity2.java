@@ -200,13 +200,13 @@ public class MainActivity2 extends BaseActivity implements BottomNavigationBar.O
 
     @Override
     public void onTabUnselected(int position) {
-
     }
 
     @Override
     public void onTabReselected(int position) {
-
+        onTabSelected(position);
     }
+
 
     private void hideFragment(FragmentTransaction transaction) {
         if (null != mHomeFragment1) {

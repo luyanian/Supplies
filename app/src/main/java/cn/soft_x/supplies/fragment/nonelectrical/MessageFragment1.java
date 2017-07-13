@@ -95,6 +95,22 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            initData();
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser){
+            initData();
+        }
+    }
+
+    @Override
     public boolean onBack() {
         return false;
     }

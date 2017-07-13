@@ -45,6 +45,10 @@ public class HttpUrl {
     /**
      * 获取验证码
      */
+    public static final String GET_WJMM_YZM = API_HOST + API_PATH_1 + "getyzmwjmm";
+    /**
+     * 获取验证码
+     */
     public static final String GET_YZM = API_HOST + API_PATH_1 + "getyzm";
     /**
      * 忘记密码
