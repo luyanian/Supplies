@@ -26,6 +26,8 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.adapter.TruckAdapter;
+import cn.soft_x.supplies.application.AppManager;
+import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
 import cn.soft_x.supplies.model.TruckItemModel;
@@ -52,6 +54,7 @@ public class TruckActivity extends BaseActivity implements BGARefreshLayout.BGAR
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_truck);
+        AppManager.getAppManager().addActivity(this);
         ButterKnife.bind(this);
         initView();
     }

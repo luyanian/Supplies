@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.activity.BaseActivity;
 import cn.soft_x.supplies.activity.TruckActivity;
+import cn.soft_x.supplies.application.AppManager;
 import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.fragment.HomeFragment;
 import cn.soft_x.supplies.fragment.MessageFragment;
@@ -103,13 +104,14 @@ public class MainActivity2 extends BaseActivity implements BottomNavigationBar.O
             mHandler.sendEmptyMessageDelayed(0, 2000);
         } else {
             finish();
-            SuppliesApplication.getInstance().exitApp();
+            AppManager.getAppManager().AppExit(this);
         }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppManager.getAppManager().addActivity(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initBottomBar();

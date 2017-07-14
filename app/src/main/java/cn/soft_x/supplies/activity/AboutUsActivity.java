@@ -10,6 +10,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.soft_x.supplies.R;
+import cn.soft_x.supplies.application.AppManager;
+import cn.soft_x.supplies.application.SuppliesApplication;
 
 public class AboutUsActivity extends BaseActivity {
 
@@ -22,6 +24,7 @@ public class AboutUsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
+        AppManager.getAppManager().addActivity(this);
         ButterKnife.bind(this);
     }
 

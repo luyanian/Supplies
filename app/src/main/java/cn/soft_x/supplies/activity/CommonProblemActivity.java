@@ -17,6 +17,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.adapter.CommonAdapter;
+import cn.soft_x.supplies.application.AppManager;
+import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
 import cn.soft_x.supplies.model.CommonModel;
@@ -33,6 +35,7 @@ public class CommonProblemActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_common_problem);
+        AppManager.getAppManager().addActivity(this);
         ButterKnife.bind(this);
         initRecyclerView();
         initData();

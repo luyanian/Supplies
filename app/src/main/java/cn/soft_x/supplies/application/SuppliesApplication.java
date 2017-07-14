@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.soft_x.supplies.BuildConfig;
+import cn.soft_x.supplies.activity.RegisterActivity;
 
 
 /**
@@ -26,39 +27,6 @@ public class SuppliesApplication extends Application {
     private static Context mApplicationContext = null;
     private static SuppliesApplication instance;
     private List<Activity> activityList = new ArrayList<>();
-
-    /**
-     * 因为application类的特殊性，如果私有化会启动不了app
-     */
-    public SuppliesApplication() {
-
-    }
-
-    //单例模式中获取唯一的ExitApplication 实例
-    public static SuppliesApplication getInstance() {
-        if (null == instance) {
-            instance = new SuppliesApplication();
-        }
-        return instance;
-    }
-
-    public void addActivity(Activity activity) {
-        activityList.add(activity);
-    }
-
-    public void exitApp() {
-        try {
-            for (Activity activity : activityList) {
-                if (activity != null) {
-                    activity.finish();
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            System.exit(0);
-        }
-    }
 
     @Override
     public void onCreate() {

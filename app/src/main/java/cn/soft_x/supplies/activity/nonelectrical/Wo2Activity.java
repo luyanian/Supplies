@@ -40,6 +40,8 @@ import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.activity.BaseActivity;
 import cn.soft_x.supplies.activity.SettingActivity;
 import cn.soft_x.supplies.activity.WebViewActivity;
+import cn.soft_x.supplies.application.AppManager;
+import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
 import cn.soft_x.supplies.utils.Constant;
@@ -73,6 +75,7 @@ public class Wo2Activity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppManager.getAppManager().addActivity(this);
         initIntent();
         setContentView(R.layout.activity_wo2);
         ButterKnife.bind(this);

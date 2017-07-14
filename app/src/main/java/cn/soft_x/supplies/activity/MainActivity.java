@@ -16,6 +16,7 @@ import com.orhanobut.logger.Logger;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.soft_x.supplies.R;
+import cn.soft_x.supplies.application.AppManager;
 import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.fragment.BaseFragment;
 import cn.soft_x.supplies.fragment.HomeFragment;
@@ -93,7 +94,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
             mHandler.sendEmptyMessageDelayed(0, 2000);
         } else {
             finish();
-            SuppliesApplication.getInstance().exitApp();
+            AppManager.getAppManager().AppExit(this);
         }
     }
 
@@ -101,6 +102,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AppManager.getAppManager().addActivity(this);
         ButterKnife.bind(this);
         initBottomBar();
         //  mFragmentManager.beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();

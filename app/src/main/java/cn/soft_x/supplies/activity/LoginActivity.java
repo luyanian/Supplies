@@ -29,6 +29,7 @@ import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.activity.nonelectrical.MainActivity2;
+import cn.soft_x.supplies.application.AppManager;
 import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
@@ -55,6 +56,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        AppManager.getAppManager().addActivity(this);
         ButterKnife.bind(this);
         initIntent();
     }
@@ -199,6 +201,6 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        SuppliesApplication.getInstance().exitApp();
+        AppManager.getAppManager().AppExit(this);
     }
 }

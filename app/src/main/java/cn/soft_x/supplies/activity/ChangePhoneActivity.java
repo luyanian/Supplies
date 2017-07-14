@@ -18,6 +18,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.soft_x.supplies.R;
+import cn.soft_x.supplies.application.AppManager;
+import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
 import cn.soft_x.supplies.utils.Constant;
@@ -57,6 +59,7 @@ public class ChangePhoneActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_phone);
+        AppManager.getAppManager().addActivity(this);
         ButterKnife.bind(this);
     }
 

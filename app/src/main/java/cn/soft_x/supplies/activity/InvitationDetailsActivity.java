@@ -24,6 +24,8 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.adapter.InvitationDetailsAdapter;
+import cn.soft_x.supplies.application.AppManager;
+import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
 import cn.soft_x.supplies.model.InvitationDetailsModel;
@@ -47,6 +49,7 @@ public class InvitationDetailsActivity extends BaseActivity implements BGARefres
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invitation_details);
+        AppManager.getAppManager().addActivity(this);
         ButterKnife.bind(this);
         initIntent();
         initListView();

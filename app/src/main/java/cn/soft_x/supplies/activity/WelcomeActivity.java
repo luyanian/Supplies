@@ -27,6 +27,7 @@ import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.activity.nonelectrical.MainActivity2;
+import cn.soft_x.supplies.application.AppManager;
 import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
@@ -45,6 +46,7 @@ public class WelcomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppManager.getAppManager().addActivity(this);
         if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
             View v = this.getWindow().getDecorView();
             v.setSystemUiVisibility(View.GONE);

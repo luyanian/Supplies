@@ -35,6 +35,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.soft_x.supplies.R;
+import cn.soft_x.supplies.application.AppManager;
+import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.utils.Constant;
 
 public class WebViewActivity extends BaseActivity {
@@ -94,6 +96,7 @@ public class WebViewActivity extends BaseActivity {
             }
         });
         setContentView(R.layout.activity_web_view);
+        AppManager.getAppManager().addActivity(this);
         ButterKnife.bind(this);
         initIntent();
         initView();

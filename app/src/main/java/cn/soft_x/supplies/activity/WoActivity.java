@@ -37,6 +37,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.soft_x.supplies.R;
+import cn.soft_x.supplies.application.AppManager;
+import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
 import cn.soft_x.supplies.utils.Constant;
@@ -94,6 +96,7 @@ public class WoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         initIntent();
         setContentView(R.layout.activity_wo);
+        AppManager.getAppManager().addActivity(this);
         ButterKnife.bind(this);
         init();
     }

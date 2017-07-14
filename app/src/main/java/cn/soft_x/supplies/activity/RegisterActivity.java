@@ -51,6 +51,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.soft_x.supplies.R;
+import cn.soft_x.supplies.application.AppManager;
+import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
 import cn.soft_x.supplies.model.PinZhongModel;
@@ -142,6 +144,7 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        AppManager.getAppManager().addActivity(this);
         ButterKnife.bind(this);
         initView();
         mSearch = GeoCoder.newInstance();
@@ -340,8 +343,10 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
             public void finished() {
                 dismissProgressDialog();
                 if (isSuccess()) {
+                    AppManager.getAppManager().finishActivityExcept(RegisterActivity.this);
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                     finish();
                 }
             }
@@ -396,7 +401,7 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
         } else if ("".equals(rightPicPath)) {
             ToastUtil.showToast(this, "请上传身份证反面的照片！");
             return false;
-        } else if ("".equals(leftPicPath)) {
+        } else if ("".equals(qianmingPicPath)) {
             ToastUtil.showToast(this, "请上传手写签名照！");
             return false;
         } else if (EditTextUtils.isEmpty(registerEdVer)) {

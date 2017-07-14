@@ -28,6 +28,8 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.adapter.MessageDetailsAdapter;
+import cn.soft_x.supplies.application.AppManager;
+import cn.soft_x.supplies.application.SuppliesApplication;
 import cn.soft_x.supplies.db.MyDBControl;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.model.MessageDetailModel;
@@ -56,6 +58,7 @@ public class MessageDetailsActivity extends BaseActivity implements BGARefreshLa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_details);
+        AppManager.getAppManager().addActivity(this);
         mControl = new MyDBControl(this);
         ButterKnife.bind(this);
         initIntent();
