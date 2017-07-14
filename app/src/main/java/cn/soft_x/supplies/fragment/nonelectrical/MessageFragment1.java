@@ -233,11 +233,6 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
                 //mData.addAll(MessageModel1.getList());
                 mData.addAll(mControl.orderGhsMsgByTime(xxdl));
                 MainActivity2 activity = (MainActivity2) getActivity();
-                if (activity.fragmentIndex != 3) {
-                    isShowToast = false;
-                } else {
-                    isShowToast = true;
-                }
                 isConn = false;
                 mContext.dismissProgressDialog();
                 mAdapter.notifyDataSetChanged();
