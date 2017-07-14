@@ -91,7 +91,7 @@ public class ResetPwdActivity extends BaseActivity {
         String search = getParamsAESEncode(json);
         String signature = getParamsRSEEncode(json);
 
-        RequestParams params = new RequestParams(HttpUrl.REGISTER);
+        RequestParams params = new RequestParams(HttpUrl.WJMM);
         params.addBodyParameter("search", search);
         params.addBodyParameter("signature", signature);
 
