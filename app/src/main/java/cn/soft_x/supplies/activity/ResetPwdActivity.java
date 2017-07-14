@@ -6,12 +6,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.alibaba.fastjson.JSON;
 import com.maverick.utils.EditTextUtils;
 import com.maverick.utils.ToastUtil;
 import com.orhanobut.logger.Logger;
 
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -76,13 +80,23 @@ public class ResetPwdActivity extends BaseActivity {
 
     private void doResetPwd() {
         //        {"dhhm":"18522815693","yhtype":"1","password":"12368975","yzm":"2447"}
-        RequestParams params = new RequestParams(HttpUrl.WJMM);
-        params.addBodyParameter("dhhm", phone);
-        params.addBodyParameter("yhtype", 1 + "");
-        params.addBodyParameter("password", EditTextUtils.getEdText(resetPwdEd2));
-        params.addBodyParameter("yzm", ver);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("dhhm", phone);
+        map.put("yhtype", "1");
+        map.put("password", EditTextUtils.getEdText(resetPwdEd2));
+        map.put("yzm", ver);
+
+        String json = JSON.toJSONString(map);
+        String search = getParamsAESEncode(json);
+        String signature = getParamsRSEEncode(json);
+
+        RequestParams params = new RequestParams(HttpUrl.REGISTER);
+        params.addBodyParameter("search", search);
+        params.addBodyParameter("signature", signature);
+
         showProgressDialog("请稍候...");
-        x.http().post(params, new MyXUtilsCallBack() {
+        x.http().get(params, new MyXUtilsCallBack() {
             @Override
             public void success(String result) {
 
