@@ -91,7 +91,6 @@ public class WebViewActivity extends BaseActivity {
         new Thread().setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread thread, Throwable throwable) {
-                Toast.makeText(WebViewActivity.this,throwable.toString(),Toast.LENGTH_LONG).show();
                 throwable.printStackTrace();
             }
         });
@@ -135,6 +134,9 @@ public class WebViewActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         String url = webView.getUrl();
+        if(TextUtils.isEmpty(url)){
+            return;
+        }
         synCookies(this,url);
         webView.reload();
     }
@@ -143,6 +145,9 @@ public class WebViewActivity extends BaseActivity {
      * 同步一下cookie
      */
     public static void synCookies(Context context, String url) {
+        if(TextUtils.isEmpty(url)){
+            return;
+        }
         DbCookieStore instance = DbCookieStore.INSTANCE;
         List cookies = instance.getCookies();
         String cookieValue="";
