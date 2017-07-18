@@ -112,7 +112,6 @@ public abstract class BaseActivity extends FragmentActivity {
         if (isVisibility) titleBarRight.setVisibility(View.VISIBLE);
         else titleBarRight.setVisibility(View.GONE);
     }
-
     /**
      * 设置状态栏颜色
      *

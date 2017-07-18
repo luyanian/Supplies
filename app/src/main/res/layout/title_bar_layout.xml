@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rl_title_root"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/color_app_theme_"
-                android:fitsSystemWindows="true"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-    >
+    android:id="@+id/rl_title_root"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/color_app_theme_"
+    android:fitsSystemWindows="true"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
 
     <TextView
         android:id="@+id/title_bar_left"

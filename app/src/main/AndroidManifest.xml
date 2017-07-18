@@ -102,7 +102,9 @@
         <activity android:name=".activity.CommonProblemActivity">
         </activity>
         <activity android:name=".activity.BusinessTypeActivity"/>
-        <activity android:name=".activity.nonelectrical.MainActivity2"/>
+        <activity android:name=".activity.nonelectrical.MainActivity2"
+            android:screenOrientation="sensor"
+            android:configChanges="keyboardHidden|screenSize|orientation"/>
         <activity android:name=".activity.nonelectrical.Wo2Activity"/>
 
         <!-- Rich push 核心功能 since 2.0.6-->

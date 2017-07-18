@@ -58,8 +58,6 @@ public class RolesListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         RoleModel.DataBean dataBean = list.get(position);
-
-
         viewHolder.imgType.setImageURI(Uri.parse(HttpUrl.API_HOST+dataBean.getTubiao()));
         viewHolder.tvType.setText(dataBean.getRoleName());
         return convertView;

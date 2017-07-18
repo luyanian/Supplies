@@ -3,7 +3,10 @@ package cn.soft_x.supplies.fragment.nonelectrical;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -23,18 +26,17 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.jpush.android.api.JPushInterface;
 import cn.soft_x.supplies.R;
-import cn.soft_x.supplies.activity.MainActivity;
-import cn.soft_x.supplies.activity.MessageDetailsActivity;
 import cn.soft_x.supplies.activity.WebViewActivity;
 import cn.soft_x.supplies.activity.nonelectrical.MainActivity2;
 import cn.soft_x.supplies.adapter.nonelectrical.MessageAdapter1;
 import cn.soft_x.supplies.db.MyDBControl;
-import cn.soft_x.supplies.fragment.BaseFragment;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.http.MyXUtilsCallBack;
 import cn.soft_x.supplies.model.nonelectrical.HQMsgModel;
@@ -45,7 +47,7 @@ import cn.soft_x.supplies.view.MessageView;
 /**
  * Created by Administrator on 2016-11-02.
  */
-public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.BGARefreshLayoutDelegate, AdapterView.OnItemClickListener {
+public class MessageFragment1 extends BaseFragment1 implements BGARefreshLayout.BGARefreshLayoutDelegate, AdapterView.OnItemClickListener {
     @BindView(R.id.dd_msg)
     MessageView ddMsg;
     @BindView(R.id.cg_msg)
@@ -54,10 +56,11 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
     MessageView systemMsg;
     @BindView(R.id.fragment_msg_ll)
     LinearLayout fragmentMsgLl;
-    @BindView(R.id.fragment_msg_listView)
-    ListView fragmentMsgListView;
     @BindView(R.id.fragment_refreshLayout)
     BGARefreshLayout fragmentRefreshLayout;
+    @BindView(R.id.fragment_msg_listView)
+    ListView fragmentMsgListView;
+    Unbinder unbinder;
 
     private BGANormalRefreshViewHolder mRefreshHolder;
 
@@ -69,12 +72,21 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
     private int msgType = 1;
     MyDBControl mControl;
 
+    @Nullable
     @Override
-    protected int setLayoutRes() {
-        return R.layout.fragment_message;
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = View.inflate(mContext, R.layout.fragment_message, null);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView();
+        initData();
+    }
+
     protected void initView() {
         mControl = new MyDBControl(mContext);
         initRefreshLayout();
@@ -85,10 +97,9 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
         initData();
     }
 
-    @Override
     protected void initData() {
         if (!isFirst) {
-            clickMsgView(msgType-1);
+            clickMsgView(msgType - 1);
         }
         isFirst = false;
         initReadDot();
@@ -97,7 +108,7 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(hidden){
+        if (hidden) {
             initData();
         }
     }
@@ -105,12 +116,11 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser){
+        if (isVisibleToUser) {
             initData();
         }
     }
 
-    @Override
     public boolean onBack() {
         return false;
     }
@@ -180,7 +190,6 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
         if (mData.size() > 0) {
             mData.clear();
         }
-        //        {"xxdl":"1","appyhid":"049ee74567e5488abfda6422785dac42"}
         if (isConn) {
             return;
         }
@@ -188,31 +197,25 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
         RequestParams params = new RequestParams(HttpUrl.MSG_GH);
         params.addBodyParameter("xxdl", xxdl + "");
 //        params.addBodyParameter("appyhid", Constant.USER_ID);
-        params.addBodyParameter("curnum","1");
-        if (xxdl == 3) {
-            long time = mControl.searchGhsMsgTime(xxdl);
-            if (time == -1) {
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                Date date;
-                try {
-                    date = format.parse("2016-01-01");
-                    params.addBodyParameter("time", date.getTime() + "");
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                params.addBodyParameter("time", time + "");
+        params.addBodyParameter("curnum", "1");
+
+        long time = mControl.searchGhsMsgTime(xxdl);
+        if (time == -1) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date;
+            try {
+                date = format.parse("2016-01-01");
+                params.addBodyParameter("time", date.getTime() + "");
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-            Logger.i("外层消息->time"+time);
+        } else {
+            params.addBodyParameter("time", time + "");
         }
+        Logger.i("外层消息->time" + time);
+
         x.http().get(params, new MyXUtilsCallBack(false) {
             MessageModel1 MessageModel1;
-
-            @Override
-            public void onSuccess(String result) {
-                super.onSuccess(result);
-            }
-
             @Override
             public void success(String result) {
                 MessageModel1 = JSON.parseObject(result, MessageModel1.class);
@@ -230,7 +233,6 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
                 if (null != MessageModel1) {
                     mControl.addOrUpDateGhsMsgTable(MessageModel1);
                 }
-                //mData.addAll(MessageModel1.getList());
                 mData.addAll(mControl.orderGhsMsgByTime(xxdl));
                 MainActivity2 activity = (MainActivity2) getActivity();
                 isConn = false;
@@ -242,9 +244,9 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
 
     private void getHQMsgData(int xxdl) {
         RequestParams params = new RequestParams(HttpUrl.HQMSGLIST);
-        params.addBodyParameter("hqpm","");
-        params.addBodyParameter("hqszd","");
-        params.addBodyParameter("currentPage","1");
+        params.addBodyParameter("hqpm", "");
+        params.addBodyParameter("hqszd", "");
+        params.addBodyParameter("currentPage", "1");
         x.http().get(params, new MyXUtilsCallBack() {
             @Override
             public void success(String result) {
@@ -347,8 +349,8 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
         if (mData.get(position).getXxdl() == 3) {
             return;
         }
-        MessageModel1.ListBean model1 =  mData.get(position);
-        mControl.upDateGhsMsgRead(model1.getXxdl(),model1.getXxlx(),1);
+        MessageModel1.ListBean model1 = mData.get(position);
+        mControl.upDateGhsMsgRead(model1.getXxdl(), model1.getXxlx(),model1.getGlid(), 1);
 
         Intent intent = new Intent(getActivity(), WebViewActivity.class);
         /**
@@ -375,5 +377,11 @@ public class MessageFragment1 extends BaseFragment implements BGARefreshLayout.B
     public void onDestroy() {
         super.onDestroy();
         mControl.close();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

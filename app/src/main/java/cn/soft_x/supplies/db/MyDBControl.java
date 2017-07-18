@@ -398,12 +398,13 @@ public class MyDBControl {
      * *****************************************供货商消息数据处理********************************************
      */
 
-    public synchronized boolean searchGhsMsgRead(int xxdl, int xxlx) {
+    public synchronized boolean searchGhsMsgRead(int xxdl, int xxlx,String gliid) {
         Cursor cursor = mDb.rawQuery("select * from "
                 + MySQLiteOpenHelper.MSG_GHS_TABLE_NAME + " where "
                 + MySQLiteOpenHelper.USER_ID + "=? and "
                 + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGDL + "=? and "
-                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGLX + "=?", new String[]{Constant.USER_ID, xxdl + "", xxlx + ""});
+                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_GLID + "=? and "
+                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGLX + "=?", new String[]{Constant.USER_ID, xxdl + "",gliid, xxlx + ""});
         if (cursor.getCount() == 0) {
             cursor.close();
             return false;
@@ -423,12 +424,12 @@ public class MyDBControl {
                 + MySQLiteOpenHelper.MSG_GHS_TABLE_NAME + " where "
                 + MySQLiteOpenHelper.USER_ID + "=? and "
                 + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGDL + "=? order by "
-                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_TIME + " desc limit 0,1", new String[]{Constant.USER_ID, xxdl + ""});
+                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_UPDATE_TIME + " desc limit 0,1", new String[]{Constant.USER_ID, xxdl + ""});
         if (cursor.getCount() == 0) {
             return -1;
         } else {
             while (cursor.moveToNext()){
-                return cursor.getLong(cursor.getColumnIndex(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_TIME));
+                return cursor.getLong(cursor.getColumnIndex(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_UPDATE_TIME));
             }
             return -1;
         }
@@ -441,13 +442,13 @@ public class MyDBControl {
                 + MySQLiteOpenHelper.USER_ID + "=? and "
                 + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGDL + "=? and "
                 + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGLX + "=? order by "
-                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_TIME + " desc limit 0,1";
+                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_UPDATE_TIME + " desc limit 0,1";
         Cursor cursor = mDb.rawQuery(sql, new String[]{Constant.USER_ID, xxdl + "",xxlx+""});
         if (cursor.getCount() == 0) {
             return -1;
         } else {
             while (cursor.moveToNext()){
-                return cursor.getLong(cursor.getColumnIndex(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_TIME));
+                return cursor.getLong(cursor.getColumnIndex(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_UPDATE_TIME));
             }
             return -1;
         }
@@ -461,13 +462,14 @@ public class MyDBControl {
      * @param xxlx
      * @param read
      */
-    public synchronized void upDateGhsMsgRead(int xxdl, int xxlx, int read) {
+    public synchronized void upDateGhsMsgRead(int xxdl, int xxlx,String gliId, int read) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_READ, read);
         mDb.update(MySQLiteOpenHelper.MSG_GHS_TABLE_NAME, contentValues,
                 MySQLiteOpenHelper.USER_ID + "=? and "
                         + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGDL + "=? and "
-                        + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGLX + "=?", new String[]{Constant.USER_ID, xxdl + "", xxlx + ""});
+                        + MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_GLID + "=? and "
+                        + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGLX + "=?", new String[]{Constant.USER_ID, xxdl + "",gliId, xxlx + ""});
         contentValues.clear();
     }
 
@@ -480,7 +482,7 @@ public class MyDBControl {
      */
     public void upDateGhsMsgTime(int xxdl, int xxlx, long time) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_TIME, time);
+        contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_UPDATE_TIME, time);
         mDb.update(MySQLiteOpenHelper.MSG_GHS_TABLE_NAME, contentValues,
                 MySQLiteOpenHelper.USER_ID + "=? and "
                         + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGDL + "=? and "
@@ -514,17 +516,18 @@ public class MyDBControl {
         }
         cursor.close();
         if (list.size() == 0) {
-            ToastUtil.showToast(SuppliesApplication.getAppContext(), "没有更多内容!");
+            ToastUtil.showToast(SuppliesApplication.getAppContext(), "暂无数据!");
         }
         Logger.i("外层查询结果为->%d", list.size());
         return list;
     }
 
-    public synchronized boolean searchGhsMsg(int xxdl, int xxlx) {
+    public synchronized boolean searchGhsMsg(int xxdl, int xxlx, String glid) {
         Cursor cursor = mDb.rawQuery("select * from " + MySQLiteOpenHelper.MSG_GHS_TABLE_NAME + " where "
                 + MySQLiteOpenHelper.USER_ID + "=? and "
                 + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGDL + "=? and "
-                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGLX + "=?", new String[]{Constant.USER_ID, xxdl + "", xxlx + ""});
+                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_GLID + "=? and "
+                + MySQLiteOpenHelper.MSG_GHS_TABLE_MSGLX + "=?", new String[]{Constant.USER_ID, xxdl + "",glid, xxlx + ""});
         return cursor.getCount() == 0;
     }
 
@@ -550,11 +553,12 @@ public class MyDBControl {
                 contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_GLCOMPANYID, b.getGlcompanyid());
                 contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSGDL, b.getXxdl());
                 contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSGLX, b.getXxlx());
-                contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSG_TIME, b.getTime());
+                contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_TIME, b.getTime());
+                contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_UPDATE_TIME, System.currentTimeMillis()/1000);
                 long ret = mDb.insert(MySQLiteOpenHelper.MSG_GHS_TABLE_NAME, null, contentValues);
                 contentValues.clear();
             } else {
-                boolean isNotHave = searchGhsMsg(b.getXxdl(), b.getXxlx());
+                boolean isNotHave = searchGhsMsg(b.getXxdl(), b.getXxlx(),b.getGlid());
                 // 没有这条就插入新的
                 Logger.i("addOrUpDateMsgTable  time->" + isNotHave);
                 if (isNotHave) {
@@ -569,13 +573,14 @@ public class MyDBControl {
                     contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSGDL, b.getXxdl());
                     contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSGLX, b.getXxlx());
                     contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSG_TIME, b.getTime());
+                    contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_UPDATE_TIME, System.currentTimeMillis()/1000);
                     long ret = mDb.insert(MySQLiteOpenHelper.MSG_GHS_TABLE_NAME, null, contentValues);
                     contentValues.clear();
                 } else {
                     // 如果有就做更新
-                    boolean read = searchGhsMsgRead(b.getXxdl(), b.getXxlx());
+                    boolean read = searchGhsMsgRead(b.getXxdl(), b.getXxlx(),b.getGlid());
                     Logger.i("addOrUpDateMsgTable 更新  read->" + read);
-                    upDateGhsMsgTime(b.getXxdl(), b.getXxlx(), b.getTime());
+                    upDateGhsMsgTime(b.getXxdl(), b.getXxlx(),System.currentTimeMillis()/1000);
 //                    if (read) {
 //                        upDateGhsMsgRead(b.getXxdl(), b.getXxlx(), 0);
 //                    }else {
@@ -587,15 +592,15 @@ public class MyDBControl {
     }
 
 
-    public void upDateGhsMSG(int xxdl, int xxlx) {
+    public void upDateGhsMSG(int xxdl, int xxlx,String gliId) {
         long time = searchGhsMsgTime(xxdl, xxlx);
         if (time != -1) {
             upDateGhsMsgTime(xxdl, xxlx, time);
         }
-        if (searchGhsMsgRead(xxdl, xxlx)) {
-            upDateGhsMsgRead(xxdl, xxlx, 1);
+        if (searchGhsMsgRead(xxdl, xxlx,gliId)) {
+            upDateGhsMsgRead(xxdl, xxlx,gliId, 1);
         } else {
-            upDateGhsMsgRead(xxdl, xxlx, 0);
+            upDateGhsMsgRead(xxdl, xxlx,gliId, 0);
         }
     }
 

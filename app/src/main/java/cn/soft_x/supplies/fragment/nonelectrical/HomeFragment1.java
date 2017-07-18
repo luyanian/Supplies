@@ -3,6 +3,7 @@ package cn.soft_x.supplies.fragment.nonelectrical;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,7 @@ import cn.soft_x.supplies.view.ViewFactory;
  * Created by ryon on 2017/6/20.
  */
 
-public class HomeFragment1 extends BaseFragment {
+public class HomeFragment1 extends BaseFragment1 {
 
     @BindView(R.id.fragment_cycle_viewpager_content)
     FrameLayout fragmentCycleViewpagerContent;
@@ -64,23 +65,17 @@ public class HomeFragment1 extends BaseFragment {
     private List<String> imageUrls = new ArrayList<>();
     private boolean isFirst = true;
 
-    @Override
-    protected int setLayoutRes() {
-        return R.layout.fragment_home1;
-    }
 
-    @Override
     protected void initView() {
         if (null == cycleViewPager) {
             cycleViewPager = new CycleViewPager();
         }
         mChildFragmentManager.beginTransaction().replace(R.id.fragment_cycle_viewpager_content, cycleViewPager).commit();
-
     }
 
     private HomeModel model;
 
-    @Override
+
     protected void initData() {
         if (!isFirst) {
             return;
@@ -95,7 +90,6 @@ public class HomeFragment1 extends BaseFragment {
                 for (HomeModel.LbtlistBean lbtlistBean : model.getLbtlist()) {
                     imageUrls.add(lbtlistBean.getPICURL());
                 }
-
             }
 
             @Override
@@ -116,7 +110,7 @@ public class HomeFragment1 extends BaseFragment {
         });
     }
 
-    @Override
+
     public boolean onBack() {
         return false;
     }
@@ -133,6 +127,7 @@ public class HomeFragment1 extends BaseFragment {
             mContext.getRlTitleRoot().setVisibility(View.GONE);
         else
             mContext.getRlTitleRoot().setVisibility(View.VISIBLE);
+        initData();
     }
 
     @Override
@@ -199,10 +194,16 @@ public class HomeFragment1 extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        View rootView = View.inflate(mContext, R.layout.fragment_home1, null);
         unbinder = ButterKnife.bind(this, rootView);
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView();
+        initData();
     }
 
     @Override

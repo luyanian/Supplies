@@ -59,6 +59,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String MSG_GHS_TABLE_MSGDL = "msgDL";
     public static final String MSG_GHS_TABLE_MSGLX = "msgLX";
     public static final String MSG_GHS_TABLE_MSG_TIME = "time";
+    public static final String MSG_GHS_TABLE_MSG_UPDATE_TIME = "updatetime";
     public static final String MSG_GHS_TABLE_MSG_CONTENT = "content";
     public static final String MSG_GHS_TABLE_MSG_YWTAGS = "ywtags";
     public static final String MSG_GHS_TABLE_MSG_GLID = "glid";
@@ -71,6 +72,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             + MSG_GHS_TABLE_MSGDL + " INTEGER,"
             + MSG_GHS_TABLE_MSGLX + " INTEGER,"
             + MSG_GHS_TABLE_MSG_TIME + " INTEGER,"
+            + MSG_GHS_TABLE_MSG_UPDATE_TIME + " INTEGER,"
             + MSG_GHS_TABLE_MSG_CONTENT + " TEXT,"
             + MSG_GHS_TABLE_MSG_YWTAGS + " TEXT,"
             + MSG_GHS_TABLE_MSG_GLID + " TEXT,"

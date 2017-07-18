@@ -1,6 +1,7 @@
 package cn.soft_x.supplies.activity.nonelectrical;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -142,6 +143,10 @@ public class MainActivity2 extends BaseActivity implements BottomNavigationBar.O
         getRlTitleRoot().setVisibility(View.GONE);
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
 
     @Override
     public void onTabSelected(int position) {
@@ -155,29 +160,27 @@ public class MainActivity2 extends BaseActivity implements BottomNavigationBar.O
                     mHomeFragment1 = new HomeFragment1();
                     if (!mHomeFragment1.isAdded())
                         transaction.add(R.id.fragment_container, mHomeFragment1);
-                } else
+                } else {
                     transaction.show(mHomeFragment1);
-                getRlTitleRoot().setVisibility(View.GONE);
+                }
                 break;
             case 1:
-                getRlTitleRoot().setVisibility(View.GONE);
-                mWebFragment11 = new WebFragment11();
-                if (!mWebFragment11.isAdded())
-                    transaction.add(R.id.fragment_container, mWebFragment11);
-                transaction.show(mWebFragment11);
-                //                Intent intent1 = new Intent(this, WebViewActivity.class);
-                //                intent1.putExtra(Constant.WEB_URL, HttpUrl.API_HOST + "/s/page/alldingdan.html");
-                //                startActivity(intent1);
+                if(null==mWebFragment11){
+                    mWebFragment11 = new WebFragment11();
+                    if (!mWebFragment11.isAdded())
+                        transaction.add(R.id.fragment_container, mWebFragment11);
+                }else{
+                    transaction.show(mWebFragment11);
+                }
                 break;
             case 2:
-                getRlTitleRoot().setVisibility(View.GONE);
-                mWebFragment21 = new WebFragment21();
-                if (!mWebFragment21.isAdded())
-                    transaction.add(R.id.fragment_container, mWebFragment21);
-                transaction.show(mWebFragment21);
-                //                Intent intent2 = new Intent(this, WebViewActivity.class);
-                //                intent2.putExtra(Constant.WEB_URL, HttpUrl.API_HOST + "/s/page/caigou.html");
-                //                startActivity(intent2);
+                if(null==mWebFragment21) {
+                    mWebFragment21 = new WebFragment21();
+                    if (!mWebFragment21.isAdded())
+                        transaction.add(R.id.fragment_container, mWebFragment21);
+                }else {
+                    transaction.show(mWebFragment21);
+                }
                 break;
             case 3:
                 if (null == mMsgFragment1) {
@@ -187,17 +190,21 @@ public class MainActivity2 extends BaseActivity implements BottomNavigationBar.O
                     if (null != bundle) {
                         mMsgFragment1.setArguments(bundle);
                     }
-                } else
+                } else {
                     transaction.show(mMsgFragment1);
-                getRlTitleRoot().setVisibility(View.VISIBLE);
-                setTitleText("消息");
+                }
                 break;
             default:
                 return;
-
-
         }
         transaction.commitAllowingStateLoss();
+
+        if(fragmentIndex==3){
+            getRlTitleRoot().setVisibility(View.VISIBLE);
+            setTitleText("消息");
+        }else{
+            getRlTitleRoot().setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -231,13 +238,7 @@ public class MainActivity2 extends BaseActivity implements BottomNavigationBar.O
         super.onResume();
         initIntent();
         mainBottomBar.selectTab(fragmentIndex);
-        onTabSelected(fragmentIndex);
-        if (fragmentIndex==4){
-            getRlTitleRoot().setVisibility(View.VISIBLE);
-            setTitleText("消息");
-        }else {
-            getRlTitleRoot().setVisibility(View.GONE);
-        }
+//        onTabSelected(fragmentIndex);
     }
 
     private Bundle bundle = null;

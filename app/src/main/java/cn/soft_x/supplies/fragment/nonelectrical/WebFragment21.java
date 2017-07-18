@@ -4,13 +4,18 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.JavascriptInterface;
@@ -29,14 +34,14 @@ import java.net.HttpCookie;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import cn.soft_x.supplies.R;
 import cn.soft_x.supplies.activity.InvitationActivity;
 import cn.soft_x.supplies.activity.LoginActivity;
 import cn.soft_x.supplies.activity.NearCompanyActivity;
 import cn.soft_x.supplies.activity.SettingActivity;
 import cn.soft_x.supplies.activity.TruckActivity;
-import cn.soft_x.supplies.activity.WebViewActivity;
-import cn.soft_x.supplies.fragment.BaseFragment;
 import cn.soft_x.supplies.http.HttpUrl;
 import cn.soft_x.supplies.utils.Constant;
 
@@ -44,9 +49,10 @@ import cn.soft_x.supplies.utils.Constant;
  * 采购
  * Created by Administrator on 2017-01-11.
  */
-public class WebFragment21 extends BaseFragment {
+public class WebFragment21 extends BaseFragment1 {
     @BindView(R.id.fragment_web_webView)
     WebView mFragmentWebWebView;
+    Unbinder unbinder;
 
     private String webUrl = HttpUrl.API_HOST + "/s/page/hangqing.html";
     /**
@@ -93,23 +99,25 @@ public class WebFragment21 extends BaseFragment {
      */
     private String cgId = "";
 
+    @Nullable
     @Override
-    protected int setLayoutRes() {
-        return R.layout.fragment_web;
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = View.inflate(mContext, R.layout.fragment_web, null);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
-    protected void initView() {
-        mContext.showProgressDialog("正在加载...");
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initData();
     }
 
-
-    @Override
     protected void initData() {
-        if (!isHidden()){
+        if (!isHidden()) {
             mContext.getRlTitleRoot().setVisibility(View.GONE);
             Logger.i("web 2 显示");
-        }else {
+        } else {
             Logger.i("web 2 隐藏");
         }
         mFragmentWebWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
@@ -118,6 +126,12 @@ public class WebFragment21 extends BaseFragment {
         //启动缓存
         mFragmentWebWebView.getSettings().setAppCacheEnabled(true);
         mFragmentWebWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                mContext.showProgressDialog("正在加载...");
+            }
+
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 //貌似不可信
@@ -138,28 +152,30 @@ public class WebFragment21 extends BaseFragment {
 
         });
         mFragmentWebWebView.setWebChromeClient(new WebChromeClient());
-        synCookies(getActivity(),webUrl);
+        synCookies(getActivity(), webUrl);
         mFragmentWebWebView.loadUrl(webUrl);
     }
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             //相当于Fragment的onResume
             String url = mFragmentWebWebView.getUrl();
-            synCookies(getActivity(),url);
+            synCookies(getActivity(), url);
             mFragmentWebWebView.reload();
         } else {
             //相当于Fragment的onPause
         }
     }
+
     /**
      * 同步一下cookie
      */
     public static void synCookies(Context context, String url) {
         DbCookieStore instance = DbCookieStore.INSTANCE;
         List cookies = instance.getCookies();
-        String cookieValue="";
+        String cookieValue = "";
         for (int i = 0; i < cookies.size(); i++) {
             HttpCookie httpCookie = (HttpCookie) cookies.get(i);
             if ((httpCookie.toString()).contains("JSESSIONID")) {
@@ -178,9 +194,9 @@ public class WebFragment21 extends BaseFragment {
         cookieManager.setCookie(url, cookieValue);//如果没有特殊需求，这里只需要将session id以"key=value"形式作为cookie即可
         CookieSyncManager.getInstance().sync();
     }
-    @Override
+
     public boolean onBack() {
-        if(mFragmentWebWebView.canGoBack()){
+        if (mFragmentWebWebView.canGoBack()) {
             mFragmentWebWebView.goBack();
             return true;
         }
@@ -193,13 +209,17 @@ public class WebFragment21 extends BaseFragment {
         intent.setData(Uri.parse("tel://" + phone));
         startActivity(intent);
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        mContext.getRlTitleRoot().setVisibility(View.GONE);
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == Constant.REQUEST_PERMISSION_CALL_PHONE_CODE) {
             if (grantResults.length >= 1) {
                 int cameraResult = grantResults[0];//相机权限
-                boolean cameraGranted = cameraResult == PackageManager.PERMISSION_GRANTED;//拍照权限
+                boolean cameraGranted = (cameraResult == PackageManager.PERMISSION_GRANTED);//拍照权限
                 if (cameraGranted) {
                     //具有电话权限
                     callPhone(phone);
@@ -212,6 +232,12 @@ public class WebFragment21 extends BaseFragment {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
     public class JsInterFace {
 
         /**
@@ -219,10 +245,11 @@ public class WebFragment21 extends BaseFragment {
          */
         @JavascriptInterface
         public void doFinish() {
-            if(mFragmentWebWebView.canGoBack()){
+            if (mFragmentWebWebView.canGoBack()) {
                 mFragmentWebWebView.goBack();
             }
         }
+
         /**
          * 得到userId
          *
@@ -241,6 +268,7 @@ public class WebFragment21 extends BaseFragment {
                 }
             }
         }
+
         /**
          * 判断登录状态
          *
@@ -250,6 +278,7 @@ public class WebFragment21 extends BaseFragment {
         public int judge() {
             return 1;
         }
+
         /**
          * 或得appyhmc
          *
@@ -268,8 +297,10 @@ public class WebFragment21 extends BaseFragment {
                 }
             }
         }
+
         /**
-         * 得到roleId 
+         * 得到roleId
+         *
          * @return
          */
         @JavascriptInterface
@@ -285,6 +316,7 @@ public class WebFragment21 extends BaseFragment {
                 }
             }
         }
+
         /**
          * 打电话
          *
@@ -341,6 +373,7 @@ public class WebFragment21 extends BaseFragment {
                 return newsId;
             }
         }
+
         /**
          * 订单id
          *
@@ -458,13 +491,13 @@ public class WebFragment21 extends BaseFragment {
         }
 
         @JavascriptInterface
-        public String showBackButton(){
+        public String showBackButton() {
             return "hide";
         }
 
         @JavascriptInterface
-        public void tologin(){
-            Intent intent = new Intent(getActivity(),LoginActivity.class);
+        public void tologin() {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
         }
     }
