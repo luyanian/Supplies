@@ -542,51 +542,34 @@ public class MyDBControl {
             return;
         }
         for (MessageModel1.ListBean b : model.getList()) {
-            if (b.getXxdl() == 3) {
-                Logger.i("addOrUpDateMsgTable 插入系统消息");
+            boolean isNotHave = searchGhsMsg(b.getXxdl(), b.getXxlx(),b.getGlid());
+            // 没有这条就插入新的
+            Logger.i("addOrUpDateMsgTable  time->" + isNotHave);
+            if (isNotHave) {
+                Logger.i("addOrUpDateMsgTable 插入");
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(MySQLiteOpenHelper.USER_ID, Constant.USER_ID);
-                contentValues.put(MySQLiteOpenHelper.MSG_TABLE_READ, 1);
+                contentValues.put(MySQLiteOpenHelper.MSG_TABLE_READ, 0);
                 contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSG_CONTENT, b.getContent());
                 contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_YWTAGS, b.getYwtags());
                 contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_GLID, b.getGlid());
                 contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_GLCOMPANYID, b.getGlcompanyid());
                 contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSGDL, b.getXxdl());
                 contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSGLX, b.getXxlx());
-                contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_TIME, b.getTime());
+                contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSG_TIME, b.getTime());
                 contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_UPDATE_TIME, System.currentTimeMillis()/1000);
                 long ret = mDb.insert(MySQLiteOpenHelper.MSG_GHS_TABLE_NAME, null, contentValues);
                 contentValues.clear();
             } else {
-                boolean isNotHave = searchGhsMsg(b.getXxdl(), b.getXxlx(),b.getGlid());
-                // 没有这条就插入新的
-                Logger.i("addOrUpDateMsgTable  time->" + isNotHave);
-                if (isNotHave) {
-                    Logger.i("addOrUpDateMsgTable 插入");
-                    ContentValues contentValues = new ContentValues();
-                    contentValues.put(MySQLiteOpenHelper.USER_ID, Constant.USER_ID);
-                    contentValues.put(MySQLiteOpenHelper.MSG_TABLE_READ, 0);
-                    contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSG_CONTENT, b.getContent());
-                    contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_YWTAGS, b.getYwtags());
-                    contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_GLID, b.getGlid());
-                    contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_GLCOMPANYID, b.getGlcompanyid());
-                    contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSGDL, b.getXxdl());
-                    contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSGLX, b.getXxlx());
-                    contentValues.put(MySQLiteOpenHelper.MSG_TABLE_MSG_TIME, b.getTime());
-                    contentValues.put(MySQLiteOpenHelper.MSG_GHS_TABLE_MSG_UPDATE_TIME, System.currentTimeMillis()/1000);
-                    long ret = mDb.insert(MySQLiteOpenHelper.MSG_GHS_TABLE_NAME, null, contentValues);
-                    contentValues.clear();
-                } else {
-                    // 如果有就做更新
-                    boolean read = searchGhsMsgRead(b.getXxdl(), b.getXxlx(),b.getGlid());
-                    Logger.i("addOrUpDateMsgTable 更新  read->" + read);
-                    upDateGhsMsgTime(b.getXxdl(), b.getXxlx(),System.currentTimeMillis()/1000);
+                // 如果有就做更新
+                boolean read = searchGhsMsgRead(b.getXxdl(), b.getXxlx(),b.getGlid());
+                Logger.i("addOrUpDateMsgTable 更新  read->" + read);
+                upDateGhsMsgTime(b.getXxdl(), b.getXxlx(),System.currentTimeMillis()/1000);
 //                    if (read) {
 //                        upDateGhsMsgRead(b.getXxdl(), b.getXxlx(), 0);
 //                    }else {
 //                        upDateGhsMsgRead(b.getXxdl(), b.getXxlx(), 1);
 //                    }
-                }
             }
         }
     }

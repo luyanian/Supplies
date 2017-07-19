@@ -346,11 +346,12 @@ public class MessageFragment1 extends BaseFragment1 implements BGARefreshLayout.
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (mData.get(position).getXxdl() == 3) {
-            return;
-        }
         MessageModel1.ListBean model1 = mData.get(position);
         mControl.upDateGhsMsgRead(model1.getXxdl(), model1.getXxlx(),model1.getGlid(), 1);
+        if (mData.get(position).getXxdl() == 3) {
+            getMsgData(msgType);
+            return;
+        }
 
         Intent intent = new Intent(getActivity(), WebViewActivity.class);
         /**
