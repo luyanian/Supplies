@@ -15,8 +15,7 @@
         android:layout_marginRight="@dimen/dpi_5"
         android:background="@drawable/bg_msg_yellow"
         android:scaleType="centerInside"
-        android:src="@drawable/icon_gonghuoxiaoxi"
-        />
+        android:src="@drawable/icon_gonghuoxiaoxi" />
 
     <TextView
         android:id="@+id/item_msg_content"
@@ -25,10 +24,10 @@
         android:layout_marginLeft="@dimen/dpi_5"
         android:layout_marginRight="@dimen/dpi_5"
         android:layout_weight="1"
-        android:maxLines="2"
-        android:text="您有一条到厂消息，请前往查..........."
-        android:textColor="@color/color_black"
-        />
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:text="您有一条到厂消息，请前往查,您有一条到厂消息，请前往查,您有一条到厂消息，请前往查"
+        android:textColor="@color/color_black" />
 
     <TextView
         android:id="@+id/item_msg_time"
