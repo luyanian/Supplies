@@ -42,7 +42,10 @@
             fresco:actualImageScaleType="focusCrop"
             fresco:backgroundImage="@drawable/bg_wo_tx"
             fresco:roundAsCircle="true"
-
+            fresco:placeholderImage="@drawable/agent_ren"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:failureImage="@drawable/agent_ren"
+            fresco:failureImageScaleType="centerInside"
             />
     </FrameLayout>
     <TextView
