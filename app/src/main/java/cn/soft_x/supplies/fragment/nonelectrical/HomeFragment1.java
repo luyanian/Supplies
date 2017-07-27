@@ -239,4 +239,8 @@ public class HomeFragment1 extends BaseFragment1 {
                 break;
         }
     }
+
+    public void reload() {
+        initData();
+    }
 }

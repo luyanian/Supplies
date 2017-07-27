@@ -385,4 +385,8 @@ public class MessageFragment1 extends BaseFragment1 implements BGARefreshLayout.
         super.onDestroyView();
         unbinder.unbind();
     }
+
+    public void reload() {
+        getMsgData(msgType);
+    }
 }

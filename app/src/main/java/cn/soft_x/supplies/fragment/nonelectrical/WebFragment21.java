@@ -238,6 +238,16 @@ public class WebFragment21 extends BaseFragment1 {
         unbinder.unbind();
     }
 
+    public void reload() {
+        if(mFragmentWebWebView!=null){
+            if(mFragmentWebWebView.copyBackForwardList().getSize()>0) {
+                mFragmentWebWebView.clearHistory();
+            }
+            synCookies(mContext, webUrl);
+            mFragmentWebWebView.loadUrl(webUrl);
+        }
+    }
+
     public class JsInterFace {
 
         /**
