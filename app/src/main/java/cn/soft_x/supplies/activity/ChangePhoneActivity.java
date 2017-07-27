@@ -77,7 +77,7 @@ public class ChangePhoneActivity extends BaseActivity {
                 } else {
                     timer.start();
                     showProgressDialog("正在获取验证码...");
-                    RequestParams params = new RequestParams(HttpUrl.GET_YZM);
+                    RequestParams params = new RequestParams(HttpUrl.GET_YZM_CHANGE_PHONE);
                     params.addBodyParameter("dhhm", EditTextUtils.getEdText(changePhoneEd));
                     x.http().post(params, new MyXUtilsCallBack() {
                         @Override

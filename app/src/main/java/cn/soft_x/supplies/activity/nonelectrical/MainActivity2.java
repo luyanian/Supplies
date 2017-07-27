@@ -214,6 +214,19 @@ public class MainActivity2 extends BaseActivity implements BottomNavigationBar.O
     @Override
     public void onTabReselected(int position) {
         onTabSelected(position);
+        switch (position){
+            case 0:
+                break;
+            case 1:
+                if(mWebFragment11!=null){
+                    mWebFragment11.reload();
+                }
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
     }
 
 

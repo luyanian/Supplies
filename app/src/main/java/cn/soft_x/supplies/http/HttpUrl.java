@@ -49,6 +49,10 @@ public class HttpUrl {
     /**
      * 获取验证码
      */
+    public static final String GET_YZM_CHANGE_PHONE = API_HOST + API_PATH_1 + "getyzmxgsjh";
+    /**
+     * 获取验证码
+     */
     public static final String GET_YZM = API_HOST + API_PATH_1 + "getyzm";
     /**
      * 忘记密码

@@ -79,8 +79,6 @@ public class ResetPwdActivity extends BaseActivity {
     }
 
     private void doResetPwd() {
-        //        {"dhhm":"18522815693","yhtype":"1","password":"12368975","yzm":"2447"}
-
         Map<String, String> map = new HashMap<>();
         map.put("dhhm", phone);
         map.put("yhtype", "1");
