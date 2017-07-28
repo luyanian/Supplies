@@ -205,6 +205,7 @@ public class MainActivity2 extends BaseActivity implements BottomNavigationBar.O
         }else{
             getRlTitleRoot().setVisibility(View.GONE);
         }
+        reload(fragmentIndex);
     }
 
     @Override
@@ -213,28 +214,7 @@ public class MainActivity2 extends BaseActivity implements BottomNavigationBar.O
 
     @Override
     public void onTabReselected(int position) {
-        switch (position){
-            case 0:
-                if(mHomeFragment1!=null){
-                    mHomeFragment1.reload();
-                }
-                break;
-            case 1:
-                if(mWebFragment11!=null){
-                    mWebFragment11.reload();
-                }
-                break;
-            case 2:
-                if(mWebFragment21!=null){
-                    mWebFragment21.reload();
-                }
-                break;
-            case 3:
-                if(mMsgFragment1!=null){
-                    mMsgFragment1.reload();
-                }
-                break;
-        }
+        reload(fragmentIndex);
     }
 
 
@@ -259,7 +239,32 @@ public class MainActivity2 extends BaseActivity implements BottomNavigationBar.O
         super.onResume();
         initIntent();
         mainBottomBar.selectTab(fragmentIndex);
-//        onTabSelected(fragmentIndex);
+        reload(fragmentIndex);
+    }
+
+    public void reload(int index){
+        switch (index){
+            case 0:
+                if(mHomeFragment1!=null){
+                    mHomeFragment1.reload();
+                }
+                break;
+            case 1:
+                if(mWebFragment11!=null){
+                    mWebFragment11.reload();
+                }
+                break;
+            case 2:
+                if(mWebFragment21!=null){
+                    mWebFragment21.reload();
+                }
+                break;
+            case 3:
+                if(mMsgFragment1!=null){
+                    mMsgFragment1.reload();
+                }
+                break;
+        }
     }
 
     private Bundle bundle = null;
