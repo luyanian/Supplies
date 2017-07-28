@@ -33,6 +33,7 @@ import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.jpush.android.api.JPushInterface;
 import cn.soft_x.supplies.R;
+import cn.soft_x.supplies.activity.BaseActivity;
 import cn.soft_x.supplies.activity.WebViewActivity;
 import cn.soft_x.supplies.activity.nonelectrical.MainActivity2;
 import cn.soft_x.supplies.adapter.nonelectrical.MessageAdapter1;
@@ -184,6 +185,9 @@ public class MessageFragment1 extends BaseFragment1 implements BGARefreshLayout.
     private boolean isConn = false;
 
     private void getMsgData(final int xxdl) {
+        if(mContext==null){
+            return;
+        }
         if (!isHidden()) {
             mContext.showProgressDialog("正在加载...");
         }
