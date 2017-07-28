@@ -117,8 +117,6 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void initView() {
         companys = getResources().getStringArray(R.array.spinner);
-        //        cycleViewPager = (CycleViewPager) getActivity().getFragmentManager()
-        //                .findFragmentById(R.id.fragment_cycle_viewpager_content);
         if (null == cycleViewPager) {
             cycleViewPager = new CycleViewPager();
         }
@@ -192,13 +190,22 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        mContext.getRlTitleRoot().setVisibility(View.GONE);
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        if (!this.isHidden())
-            mContext.getRlTitleRoot().setVisibility(View.GONE);
-        else
-            mContext.getRlTitleRoot().setVisibility(View.VISIBLE);
+        mContext.getRlTitleRoot().setVisibility(View.GONE);
+//        if (!this.isHidden())
+//            mContext.getRlTitleRoot().setVisibility(View.GONE);
+//        else
+//            mContext.getRlTitleRoot().setVisibility(View.VISIBLE);
     }
+
+
 
     @Override
     public void onPause() {
