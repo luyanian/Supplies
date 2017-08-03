@@ -12,8 +12,8 @@
 
     <TextView
         android:id="@+id/item_item_check"
-        android:layout_width="@dimen/dpi_15"
-        android:layout_height="@dimen/dpi_15"
+        android:layout_width="@dimen/dpi_20"
+        android:layout_height="@dimen/dpi_20"
         android:layout_marginRight="@dimen/dpi_10"
         android:background="@drawable/bg_truck_1"
         />
