@@ -314,6 +314,8 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
         map.put("brxm", EditTextUtils.getEdText(registerEdName));
         map.put("dhhm", EditTextUtils.getEdText(registerEdPhone));
         map.put("password", EditTextUtils.getEdText(registerEdPwd1));
+        map.put("sheng", String.valueOf(registerSp.getItemAtPosition(spinnerIndex)));
+        map.put("shi", EditTextUtils.getEdText(registerEdCity));
         map.put("zz", EditTextUtils.getEdText(registerEdAddress));
         map.put("jjlxfs", EditTextUtils.getEdText(registerEdEmergency));
         map.put("sfzh", EditTextUtils.getEdText(registerEdIdCard));
