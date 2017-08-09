@@ -188,7 +188,7 @@ public class MessageFragment1 extends BaseFragment1 implements BGARefreshLayout.
         if(mContext==null){
             return;
         }
-        if (!isHidden()) {
+        if (!isHidden()&&!mContext.isShowing()) {
             mContext.showProgressDialog("正在加载...");
         }
         if (mData.size() > 0) {
@@ -224,6 +224,11 @@ public class MessageFragment1 extends BaseFragment1 implements BGARefreshLayout.
             public void success(String result) {
                 MessageModel1 = JSON.parseObject(result, MessageModel1.class);
 
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                super.onSuccess(result);
             }
 
             @Override

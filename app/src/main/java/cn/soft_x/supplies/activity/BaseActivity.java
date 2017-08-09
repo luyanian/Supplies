@@ -192,7 +192,9 @@ public abstract class BaseActivity extends FragmentActivity {
         dialog.show();
         return true;
     }
-
+    public boolean isShowing(){
+        return dialog!=null&&dialog.isShowing();
+    }
     public boolean dismissProgressDialog() {
         if (dialog == null)
             return false;
